@@ -1,0 +1,39 @@
+#caja{
+	display: flex;
+	flex-wrap: wrap;
+	margin:0 auto;
+	width:calc(100% - 32px)
+}
+.cajita{
+	flex:0 0 50%;
+}
+.cajita img{
+	width:calc(100% - 8px);
+	margin-top:16px;
+
+}
+
+.cajita:nth-child(even) img{
+	margin-left:8px;
+}
+
+.cajita:nth-child(odd) img{
+	margin-right:8px;
+}
+
+#luz {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100vw;
+	height: 100vh;
+}
+
+#luz img {
+	width: 130%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(90deg);
+	position: absolute;
+}

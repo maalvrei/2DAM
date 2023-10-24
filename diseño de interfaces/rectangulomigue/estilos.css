@@ -1,0 +1,9 @@
+#caja{
+    background-color: aqua;
+    width: 50%;
+    height: 300px;
+}
+
+p {
+    margin: 20px;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu responsive</title>
+</head>
+<style>
+    #menu {
+        display: none;
+        background-color: rgba(0, 0, 0, 60%);
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: calc(100vw - 44px);
+    }
+    .visible {
+        display: block !important;
+    }
+</style>
+<body>
+    <nav id="boton"><img src="Imagene/menu.svg"></nav>
+    <div id="menu" class="visible">
+        <ul>
+        <li><a href="#">Opcion de menu 1</a></li>
+        <li><a href="#">Opcion de menu 1</a></li>
+        <li><a href="#">Opcion de menu 1</a></li>
+        <li><a href="#">Opcion de menu 1</a></li>
+    </ul>
+    </div>
+    <script>
+        function activarMenu() {
+            document.getElementById("menu").classList.toggle("visible");
+        }
+        document.getElementById("boton").addEventListener("click", activarMenu)
+    </script>
+</body>
+</html>

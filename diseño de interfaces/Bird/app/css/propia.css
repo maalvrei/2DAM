@@ -1,0 +1,35 @@
+header{
+    height:62px;background-color: #89AB79;
+    position:relative;
+}
+
+#logo{
+    height:40px;width: 45px;padding:11px;
+}
+#logo img{
+    width:100%;
+}
+#buscar input{
+    border-radius: 30px;
+background: #E1FFBB;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+border:0;
+position:absolute;right:11px;top:50%;transform: translateY(-50%);
+}
+main{
+    margin:10px;
+}
+#catalogo{
+    display:flex;
+    flex-wrap: wrap;
+}
+#catalogo figure{
+    min-height:100px;
+    flex:0 0 50%;max-width:50%;
+}
+#catalogo figure:nth-child(odd){
+    background-color: cyan;
+}
+#catalogo figure:nth-child(even){
+    background-color: yellow;
+}
