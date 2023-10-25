@@ -114,4 +114,10 @@ public class Parking {
 				mapDeCochesIguales.values().stream().reduce((s , v) -> s + v).orElse(0));
 	}
 	
+	public void reportSetCoches() {
+		System.out.printf("\nLISTADO DEL SET DE COCHES\n=================\nParking : %s\n",nombre);
+		setDeCoches.forEach(System.out::println);
+		System.out.printf("Total de items: %d \n", setDeCoches.size());
+	}
+	
 }

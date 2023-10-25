@@ -17,6 +17,7 @@ public class Test {
 		p1.reportMarcas();
 		p1.reportColores();
 		p1.reportCochesIguales();
+		p1.reportSetCoches();
 		
 	}
 	
