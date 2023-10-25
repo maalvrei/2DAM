@@ -289,13 +289,10 @@ public class Parking {
 		
 		// se comprueba que los colores están bien introducidos en su map, debe haber uno amarillo, uno indigo, uno naranja, uno rojo y dos violetas
 		p1.reportColores();
-		
 		// se comprueba que las marcas están bien introducidas en su map, debe haber un audi, un chevrolet, un honda, un toyota y dos volkswagen
 		p1.reportMarcas();
-		
 		//se comprueban los coches iguales. debe haber un honda naranja, un toyota rojo, un audi amarillo, un chevrolet indigo y dos volkwagen violetas
 		p1.reportCochesIguales();
-		
 		// se comprueba el set. debe haber solo un coche de cada clase, por lo que el volkswagen violeta solo debe imprimirse una vez
 		p1.reporSetCoches();
 		p1.saleCoche(c6);

@@ -20,8 +20,8 @@ public class Coche {
 		return "Coche: " + marca + " " + color;
 	}
 	
-	@Override
-	public boolean equals (Object obj) {
+	//@Override
+	/*public boolean equals (Object obj) {
 		Coche c = (Coche) obj;
 		if( this == c)
 			return true;
@@ -29,6 +29,6 @@ public class Coche {
 			return false;
 		else
 			return false;
-	}
+	}*/
 	
 }
