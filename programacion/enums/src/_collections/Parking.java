@@ -116,7 +116,9 @@ public class Parking {
 	
 	public void reportSetCoches() {
 		System.out.printf("\nLISTADO DEL SET DE COCHES\n=================\nParking : %s\n",nombre);
-		setDeCoches.forEach(System.out::println);
+		setDeCoches.stream().sorted((c1,c2) ->c1.getColor().toString().compareTo(c2.getColor().toString()) == 0 ?
+				c1.getMarca().toString().compareTo(c2.getMarca().toString()) :
+					c1.getColor().toString().compareTo(c2.getColor().toString())).forEach(System.out::println);
 		System.out.printf("Total de items: %d \n", setDeCoches.size());
 	}
 	
