@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-size:20px;
+}
+main{
+	width:calc(100vw - 40px);margin:20px auto;
+}
+button{
+border-radius: 16px;display:block;
+background: #9747FF;
+border:0;padding:8px 16px; color:#fff;width:calc(100% - 32px);margin:16px auto;
+}
+
+form div{
+	border-radius: 16px;
+	background: #f4ecff;
+	border:0;padding:0 16px; width:calc(100% - 32px);margin:16px auto;
+	display:flex;
+	}
+
+input[type=text], input[type=password]{
+	border:0;outline-width: 0;width:100%;background-color: transparent;
+}
+
+label{
+	display:none;
+}
+
+::placeholder{
+	color:blue
+}
