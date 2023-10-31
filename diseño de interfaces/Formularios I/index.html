@@ -9,15 +9,21 @@
 
 </head>
 <body>
+    <h2>1</h2>
 <main>
-    <form name="formu" action="gestiona.php" method="get" novalidate>
-    <div> <label for="nombre">Nombre: </label><input placeholder="Nombre" type="text" name="nombre" id="nombre"></div>
-    <div><label for="clave">Contraseña</label><input  placeholder="Contraseña"  type="password" name="clave" id="clave"> <img src="img/ojo-visible.svg"
-        id="ojo"></div>
-    <button>Enviar</button>
-            <!--<input type="email"  name="correo">
-            <input type="tel"  name="telefono">
-            <input type="hidden" value="192.0.0.55">-->
+    <div id="mensaje"></div>
+    <form name="formu" action="recibe.html" method="get" novalidate>
+    <div><label for="nombre">Nombre: </label><input placeholder="Nombre" type="text" name="nombre" id="nombre"></div>
+
+    <div><label for="apellidos">Apellidos: </label><input placeholder="Apellidos" type="text" name="apellidos" id="apellidos"></div>
+
+    <div><label for="email">Email: </label><input placeholder="Email" type="email" name="email" id="email"></div>
+
+    <div><label for="telefono">Teléfono: </label><input placeholder="Teléfono" type="tel" name="telefono" id="telefono"></div>
+
+    <div><label for="clave">Contraseña</label><input  placeholder="Contraseña"  type="password" name="clave" id="clave"> <img src="img/ojo-visible.svg" id="ojo"></div>
+    <button>Comprobar</button>
+ 
 
             
 

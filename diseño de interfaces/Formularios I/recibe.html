@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario I</title>
+    <link href="reset.css" rel="stylesheet">
+    <link href="estilos.css" rel="stylesheet">
+
+</head>
+<body>
+    <h2>2</h2>
+<main>
+
+    <p>Estos son los datos que has enviado:</p>
+    <form name="formu" action="index.html" method="get" novalidate id="recibe">
+    <div><label for="nombre">Nombre: </label><span id="tnombre"></span><input  type="hidden" name="nombre" id="nombre"></div>
+
+    <div><label for="apellidos">Apellidos: </label><span id="tapellidos"></span><input type="hidden" name="apellidos" id="apellidos" ></div>
+
+    <div><label for="email">Email: </label><span id="temail"></span><input type="hidden" name="email" id="email"></div>
+
+    <div><label for="telefono">Teléfono: </label><span id="ttelefono"></span><input  type="hidden" name="telefono" id="telefono"></div>
+
+    <div><label for="clave">Contraseña</label><input type="password" name="clave" id="clave" value=""> <img src="img/ojo-visible.svg" id="ojo" style="display:none"> </div>
+    <button>Volver</button>
+        </form>
+
+    </main>
+
+<script src="code.js"></script>
+</body>
+</html>
