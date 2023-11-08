@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta Atrás</title>
+  <link href="estilos.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Cuenta Atrás para Ejercicios</h1>
+  <p>Ingresa el tiempo en minutos y segundos:</p>
+  <input type="text" id="minutes" placeholder="Minutos">
+  <input type="text" id="seconds" placeholder="Segundos">
+  <button id="startButton">Iniciar</button>
+  <div id="countdown"></div>
+  
+  <script>
+    let countdown;
+    const countdownDisplay = document.getElementById("countdown");
+    const minutesInput = document.getElementById("minutes");
+    const secondsInput = document.getElementById("seconds");
+    const startButton = document.getElementById("startButton");
+    
+    startButton.addEventListener("click", startCountdown);
+    
+    function startCountdown() {
+      const minutes = parseInt(minutesInput.value) || 0;
+      const seconds = parseInt(secondsInput.value) || 0;
+      const totalTimeInSeconds = minutes * 60 + seconds;
+      let currentTime = totalTimeInSeconds;
+      
+      countdown = setInterval(function() {
+        const minutesRemaining = Math.floor(currentTime / 60);
+        const secondsRemaining = currentTime % 60;
+        
+        countdownDisplay.innerHTML = `${String(minutesRemaining).padStart(2, "0")}:${String(secondsRemaining).padStart(2, "0")}`;
+        
+        if (currentTime <= 0) {
+          clearInterval(countdown);
+          countdownDisplay.innerHTML = "¡Tiempo terminado!";
+        } else {
+          currentTime--;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
+
