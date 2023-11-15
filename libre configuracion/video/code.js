@@ -1,21 +1,23 @@
-const boton = document.getElementById("play")
+const boton = document.getElementById("boton")
+const accion = document.getElementById("video")
+const video = document.getElementById("perrito")
+
+function actualizaMomento() {
+    var estado = video.currentTime
+    document.getElementById("salida").innerHTML = Math.floor(estado)
+}
+
+setInterval(actualizaMomento, 1000)
+
 function reproducir() {
-    const video = document.getElementById("perrito")
     
     if (video.paused || video.ended) {
         video.play()
-        boton.firstElementChild.src = "img/pause.svg"
+        boton.src = "img/pause.svg"
     } else {
         video.pause()
-        boton.firstElementChild.src = "img/play.svg"
+        boton.src = "img/play.svg"
     }
 }
 
 boton.addEventListener("click", reproducir)
-/*document.getElementById("play").addEventListener("click", function() {
-    document.getElementById("perrito").play()
-})
-
-document.getElementById("pause").addEventListener("click", function() {
-    document.getElementById("perrito").pause()
-})*/

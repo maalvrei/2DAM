@@ -11,9 +11,13 @@
 <body>
     
 <main>
-    <video id="perrito" src="multimedia/dog_-_45587 (720p).mp4">
+    <div id="video">
+    <video id="perrito" src="multimedia/dog_-_45587 (720p).mp4" controls autoplay loop>
+        <track src="subtitulos/es.vtt" kind="subtitles" label="Español" srclang="es" default>
     </video>
-    <button id="play"><img src="img/play.svg"></button>
+    <img id="boton" src="img/play.svg">
+    <output id="salida"></output>
+</div>
 </main>
 
 <script src="code.js"></script>
