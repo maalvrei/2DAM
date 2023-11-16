@@ -1,0 +1,42 @@
+body {
+	text-align: center;
+}
+
+.pantalla{
+	font-family: 'Bungee', sans-serif;
+	width:100vw;
+	height:100vh;
+}
+
+#pantalla1{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #244362;
+}
+
+#pantalla2 {
+	background-image: url("img/fondo2.jpg");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+#pantalla3 {
+	background: url("img/fondo2.jpg") cover/center no-repeat;
+	/*background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;*/
+}
+
+#inicial {
+	font-family: 'Bungee', sans-serif;
+	font-size: 24px;
+	line-height: 2em;
+	padding: 38px;
+	background-color: #244362;
+	color: white;
+	border-width: 0px;
+	margin-top: 100px;
+	border-radius: 50px;
+}
