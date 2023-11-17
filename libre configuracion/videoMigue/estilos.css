@@ -1,0 +1,24 @@
+#video {
+    position: relative;
+}
+
+#video video {
+    width: 100%;
+}
+
+#video img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 50%;
+    transition: all 0.5s ease;
+}
+
+#video:hover img{
+    opacity: 100%;
+}
+
+::cue {
+    color: yellow;
+}

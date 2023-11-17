@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video con subtitles</title>
+    <link href="reset.css" rel="stylesheet">
+    <link href="estilos.css" rel="stylesheet">
+
+</head>
+<body>
+    
+<main>
+    <div id="video">
+    <video id="perrito" src="multimedia/IMG_9004.mp4" controls autoplay loop>
+        <track src="subtitulos/es.vtt" kind="subtitles" label="Español" srclang="es" default>
+    </video>
+    <img id="boton" src="img/play.svg">
+    <output id="salida"></output>
+</div>
+</main>
+
+<script src="code.js"></script>
+</body>
+</html>
