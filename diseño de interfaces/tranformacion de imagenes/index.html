@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtros y transformaciones</title>
     <link href="reset.css" rel="stylesheet">
     <link href="estilos.css" rel="stylesheet">
+
 </head>
 <body>
-    <header>
-        <figure><img src="img/logo.svg" alt="Logo de la aplicacion"></figure>
-        <figure><img src="img/subir.svg" alt="Icono subir imagen"></figure>
-    </header>
-    
+<div id="contenedor">
+<header>
+    <figure><img src="img/logo.svg" ></figure>
+    <nav><img src="img/subir.svg"></nav>
+</header>
+<main>
+  <figure id="imagen-principal">
+    <img src="img/lagarto.jpg" alt="imagen para editar">
+  </figure>
+<div id="controles">
+    <div><label for="brillo">Brillo</label><input type="range" id="brightness" min="0" max="500" value="100"><output>0</output></div>
+    <div><label for="contraste">Contraste</label><input type="range" id="contrast" min="0" max="500" value="100"><output>0</output></div>
+    <div><label for="saturacion">Saturación</label><input type="range" id="saturate" min="0" max="500" value="100"><output>0</output></div>
+    <div><label for="byn">B/N</label><input type="checkbox" id="byn"></div>
+  </div>
+</main>
+<footer>
+    <button id="descargar">Descargar</button>
+</footer>
+</div>
+    <script src="code.js"></script>
 </body>
 </html>

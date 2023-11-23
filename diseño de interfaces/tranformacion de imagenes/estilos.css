@@ -1,7 +1,42 @@
-html {
+#contenedor {
+    position: relative;
+    width: calc(100vw - 90px);
+    height: calc(100vh - 90px);
+    margin: 45px auto;
+}
+
+#imagen-principal img {
+    width: 100%;
+}
+
+#imagen-principal {
+ margin: 45px 0;
+}
+
+#controles div {
+    display: flex;
+}
+
+#controles div label {
+    flex: 0 0 30%;
+}
+
+#controles div input {
+    flex: 0 0 50%;
+}
+
+#controles div output {
+    flex: 0 0 18.9%;
+    text-align: right;
 }
 
 header {
     display: flex;
     justify-content: space-between;
 }
+
+/*#controles {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}*/
