@@ -10,40 +10,34 @@ public class Carta {
 	String valor;
 	String palo;
 	static Random r = new Random();
-	static char [] valores = {'A' , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 'J' , 'Q' , 'K'};
+	static String [] valores = {"A" ,"2","3","4","5","6","7","8","9","10","J","Q","K"};
 	static String [] palos = {"Picas", "Corazones", "Treboles", "Diamantes"};
 	
-	public Carta(String valor, String palo, boolean esComodin) {
-		if (!esComodin) {
-			this.esComodin = false;
+	public Carta(String valor, String palo) {
 			this.valor = valor;
 			this.palo = palo;
-		} else {
-			this.esComodin = true;
-			this.valor = null;
-			this.palo = null;
-		}
+			esComodin = palo == "Comodin";
 	}
 	
 	public static Carta cartaAleatoriaDeLaBaraja() {
 		List<Carta> listaBaraja = new ArrayList<>();
-		for (char c : valores) {
-			listaBaraja.add(new Carta(c == 'A' || c == 'J' || c == 'Q' || c == 'K'? String.valueOf(c) : String.valueOf((int)c),palos[0], false));
+		for (String s : valores) {
+			listaBaraja.add(new Carta(s,palos[0]));
 		}
-		for (char c : valores) {
-			listaBaraja.add(new Carta(c == 'A' || c == 'J' || c == 'Q' || c == 'K'? String.valueOf(c) : String.valueOf((int)c),palos[1], false));
+		for (String s : valores) {
+			listaBaraja.add(new Carta(s,palos[1]));
 		}
-		for (char c : valores) {
-			listaBaraja.add(new Carta(c == 'A' || c == 'J' || c == 'Q' || c == 'K'? String.valueOf(c) : String.valueOf((int)c),palos[2], false));
+		for (String s : valores) {
+			listaBaraja.add(new Carta(s,palos[2]));
 		}
-		for (char c : valores) {
-			listaBaraja.add(new Carta(c == 'A' || c == 'J' || c == 'Q' || c == 'K'? String.valueOf(c) : String.valueOf((int)c),palos[3], false));
+		for (String s : valores) {
+			listaBaraja.add(new Carta(s,palos[3]));
 		}
-		listaBaraja.add(new Carta(null, null, true));
-		listaBaraja.add(new Carta(null, null, true));
-		Carta[] arrayBaraja = new Carta[listaBaraja.size()];
-		arrayBaraja = listaBaraja.toArray(arrayBaraja);
-		return arrayBaraja[r.nextInt(0,arrayBaraja.length)];
+		listaBaraja.add(new Carta("0", "Comodin"));
+		listaBaraja.add(new Carta("0", "Comodin"));
+		Carta[] Baraja = new Carta[listaBaraja.size()];
+		Baraja = listaBaraja.toArray(Baraja);
+		return Baraja[r.nextInt(0,Baraja.length)];
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public class Lanzamiento {
@@ -27,33 +28,45 @@ public class Lanzamiento {
 	}
 
 	public static void escribeTXT(String ruta) {
-		
-		File f = new File(ruta,"lanzamientos.txt");
+
+		File f = new File(ruta, "lanzamientos.txt");
 		if (!f.exists())
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+
 		try (BufferedWriter bw1 = new BufferedWriter(new FileWriter(f))) {
-			Lanzamiento l = new Lanzamiento();
-			boolean lanzamientoInvalido1 = (l.carta.valor != "A" && l.carta.valor != "J" && l.carta.valor != "Q"
-					&& l.carta.valor != "K") && (l.dado1 % 2 != 0 || l.dado2 % 2 != 0) && l.moneda.equals("Cruz")
-					&& (l.carta.palo == "Treboles" && Integer.valueOf(l.carta.valor) % 2 != 0);
-			boolean lanzamientoInvalido2 = (l.dado1 + l.dado2 == 7) && (l.moneda.equals("Cara"))
-					&& l.carta.esComodin == false;
+
+			Predicate<Lanzamiento> dadoPar = l -> l.dado1 % 2 == 0 && l.dado2 % 2 == 0;
+
+			Predicate<Lanzamiento> monedaNoEsCruz = l -> !l.moneda.equals("Cruz");
+
+			Predicate<Lanzamiento> cartaNoEsTrebolImpar = l -> {
+				Carta c = l.carta;
+				boolean esImpar = false;
+				if (!(c.valor.equals("A") || c.valor.equals("J") || c.valor.equals("Q") || c.valor.equals("K") || c.valor.equals("0")))
+					esImpar = Integer.valueOf(c.valor)%2 != 0 ;
+				return !c.palo.equals("Treboles") || esImpar == false;
+			};
+			
+			Predicate<Lanzamiento> lanzamientoValido = dadoPar.negate().or(monedaNoEsCruz).or(cartaNoEsTrebolImpar);
+			
 			int lanzamientosValidos = 0;
-			for (int i = lanzamientosValidos; i < 10_000; i++) {
-				l = new Lanzamiento();
-				if (!lanzamientoInvalido1 && !lanzamientoInvalido2) {
+			for (int i = 0; i < 10_000; i++) {
+				Lanzamiento l = new Lanzamiento();
+				if (lanzamientoValido.test(l)) {
 					lanzamientosValidos++;
-					bw1.append(l.carta.esComodin ? "Comodin|" + l.dado1 + "|" + l.dado2 + "|" + l.moneda + "\n"
-							: l.carta.valor + "|" + l.carta.palo + "|" + l.dado1 + "|" + l.dado2 + "|" + l.moneda
-									+ "\n");
-				}
+					bw1.append(
+							l.carta.valor + "|" + l.carta.palo + "|" + l.dado1 + "|" + l.dado2 + "|" + l.moneda + "\n");
+				} else
+					System.out.println(l);
 			}
-		} catch (Exception e) {
+			System.out.printf("Se han escrito %d lanzamientos", lanzamientosValidos);
+		} catch (
+
+		Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -71,15 +84,15 @@ public class Lanzamiento {
 	}
 
 	public static void escribeSQL(String ruta, List<String[]> lineas) {
-		
-		File f = new File(ruta,"sentencias.sql");
+
+		File f = new File(ruta, "sentencias.sql");
 		if (!f.exists())
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+
 		try (BufferedWriter bw2 = new BufferedWriter(new FileWriter(f))) {
 			int sentenciasCreadas = 0;
 			for (int i = lineas.size() - 1; i > 0; i--) {
@@ -106,15 +119,15 @@ public class Lanzamiento {
 	}
 
 	public static void escribeHTML(String ruta, List<String[]> lineas) {
-		
-		File f = new File(ruta,"tablaLanzamientos.html");
+
+		File f = new File(ruta, "tablaLanzamientos.html");
 		if (!f.exists())
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+
 		try (BufferedWriter bw3 = new BufferedWriter(new FileWriter(f))) {
 			int filasCreadas = 0;
 			bw3.append(
@@ -134,6 +147,12 @@ public class Lanzamiento {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Lanzamiento con moneda %s, dado 1 %d, dado 2 %d, y carta %s %s%n", moneda, dado1, dado2,
+				carta.palo, carta.valor);
+	}
+
 	public static void main(String[] args) {
 
 		String rutaTxt = "C:\\Users\\migue\\Desktop\\repo 2º dam\\2DAM\\programacion\\examenAccesoADatos\\src\\examen\\";
@@ -143,7 +162,6 @@ public class Lanzamiento {
 		escribeSQL(rutaSQL, lineas);
 		String rutaHtml = "C:\\Users\\migue\\Desktop\\repo 2º dam\\2DAM\\programacion\\examenAccesoADatos\\src\\examen\\";
 		escribeHTML(rutaHtml, lineas);
-
 
 	}
 }
