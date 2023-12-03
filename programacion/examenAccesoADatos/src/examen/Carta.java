@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Carta {
 
-	boolean esComodin;
 	String valor;
 	String palo;
 	static Random r = new Random();
@@ -16,7 +15,6 @@ public class Carta {
 	public Carta(String valor, String palo) {
 			this.valor = valor;
 			this.palo = palo;
-			esComodin = palo == "Comodin";
 	}
 	
 	public static Carta cartaAleatoriaDeLaBaraja() {
@@ -39,10 +37,5 @@ public class Carta {
 		Baraja = listaBaraja.toArray(Baraja);
 		return Baraja[r.nextInt(0,Baraja.length)];
 	}
-	
-	@Override
-	public String toString() {
-		return esComodin? "La carta es un comodin" : "Es el " + valor + " de " + palo;
-	}
-	
+
 }
