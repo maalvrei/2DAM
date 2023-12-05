@@ -45,7 +45,7 @@ public class Lanzamiento {
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("La ruta introducida no es valida");
 			}
 		return f;
 	}
@@ -95,7 +95,7 @@ public class Lanzamiento {
 							generaLineaParaElTxt(l));
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Problemas con el archivo txt, imposible escribir los lanzamientos");
 		}
 	}
 
@@ -153,7 +153,7 @@ public class Lanzamiento {
 						}
 					});
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Problemas con el archivo sql, imposible crear las sentencias");
 		}
 	}
 
@@ -182,19 +182,20 @@ public class Lanzamiento {
 					});
 			bw3.append("</table>");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Problemas con el archivo html, imposible crear la tabla");
 		}
 	}
 
 	public static void main(String[] args) {
 
-		/**/
+		/*solo tienes que añadir la ruta donde quieras crear los archivos javi, y deberia funcionar sin problemas
+		 * si tienes cualquier problema me escribes. gracias*/
 		
-		String ruta = "C:\\Users\\Usuario\\Desktop";
-		//escribeTXT(ruta);
+		String ruta = "tu ruta aquí";
+		escribeTXT(ruta);
 		List<Lanzamiento> lanzamientos = leeTXT(ruta);
-		//escribeSQL(ruta, lanzamientos);
-		//escribeHTML(ruta, lanzamientos);
+		escribeSQL(ruta, lanzamientos);
+		escribeHTML(ruta, lanzamientos);
 
 	}
 }
