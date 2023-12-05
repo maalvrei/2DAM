@@ -28,6 +28,8 @@ public class Lanzamiento {
 		dado2 = r.nextInt(1, 7);
 	}
 
+	/*el constructor con los parametros es el que se usa en el metodo generaLanzamientoDeUnaLinea*/
+	
 	public Lanzamiento(Carta carta, int dado1, int dado2, String moneda) {
 		this.moneda = moneda;
 		this.carta = carta;
@@ -35,13 +37,21 @@ public class Lanzamiento {
 		this.dado2 = dado2;
 	}
 
-	private static Lanzamiento generaLanzamientoDeUnaLinea(String[] linea) {
-		Carta c = new Carta(linea[0], linea[1]);
-		int dado1 = Integer.valueOf(linea[2]);
-		int dado2 = Integer.valueOf(linea[3]);
-		String moneda = linea[4];
-		return new Lanzamiento(c, dado1, dado2, moneda);
+	/* este metodo verifica que el file que vamos a utilizar para ser leido o escrito existe y si no existe lo crea*/
+	
+	private static File creaArchivoSiNoExiste (String ruta, String nombreArchivo) {
+		File f = new File(ruta, nombreArchivo);
+		if (!f.exists())
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return f;
 	}
+	
+	/*metodo utilizado en la escritura para validar que el lanzamiento es el correcto y que no se corresponde
+	 * con lo descrito para un lanzamiento erroneo*/
 
 	private static boolean validaConPredicates(Lanzamiento lanzamiento) {
 
@@ -64,52 +74,71 @@ public class Lanzamiento {
 		return lanzamientosInvalidos.negate().test(lanzamiento);
 	}
 
+	/* por simplificar un poco el metodo de escritura en el txt, cree este metodo auxiliar que general
+	 * cada linea del txt con los datos del lanzamiento separados por el palito*/
+	
+	private static String generaLineaParaElTxt (Lanzamiento l) {
+		 return l.carta.valor + "|" + l.carta.palo + "|" + l.dado1 + "|" + l.dado2 + "|" + l.moneda + "\n";
+	}
+	
+	/*el metodo escribeTXT escribe en el txt aquellos lanzamientos que sean validos en un rango de 10_000 lanzaminetos*/
+	
 	public static void escribeTXT(String ruta) {
 
-		File f = new File(ruta, "lanzamientos.txt");
-		if (!f.exists())
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		File f = creaArchivoSiNoExiste(ruta, "lanzamientos.txt");
 
 		try (BufferedWriter bw1 = new BufferedWriter(new FileWriter(f))) {
 			for (int i = 0; i < 10_000; i++) {
 				Lanzamiento l = new Lanzamiento();
 				if (validaConPredicates(l))
 					bw1.append(
-							l.carta.valor + "|" + l.carta.palo + "|" + l.dado1 + "|" + l.dado2 + "|" + l.moneda + "\n");
+							generaLineaParaElTxt(l));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
+	/*metodo utilizado en la lectura del txt para crear un nuevo lanzamiento de cada linea del text*/
+	private static Lanzamiento generaLanzamientoDeUnaLinea(String[] linea) {
+		Carta c = new Carta(linea[0], linea[1]);
+		int dado1 = Integer.valueOf(linea[2]);
+		int dado2 = Integer.valueOf(linea[3]);
+		String moneda = linea[4];
+		return new Lanzamiento(c, dado1, dado2, moneda);
+	}
+	
+	/*el metodo leeTXT lo que hace es leer el documento y devolver un list de objetos lanzamientos*/
+	
 	public static List<Lanzamiento> leeTXT(String ruta) {
 		File f = new File(ruta, "lanzamientos.txt");
 		List<Lanzamiento> lanzamientos = new ArrayList<>();
 		try (BufferedReader br1 = new BufferedReader(new FileReader(f))) {
 			String separador = Pattern.quote("|");
 			br1.lines().forEach(linea -> {
+				/*como el metodo lines de los bf reader devuelve todas las lineas del archivo leido en forma de String,
+				 * aprovechamos que cada linea la podemos convertir en un array de String haciendo split para pasarsela al metodo 
+				 * generaLanzamentoDeUnaLinea y que este cree el lanzamiento con los datos de esa linea */
 				Lanzamiento l = generaLanzamientoDeUnaLinea(linea.split(separador));
 				lanzamientos.add(l);
 			});
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("No se puede leer un txt que no existe.");
 		}
 		return lanzamientos;
 	}
 
+	/*el metodo escribeSQL verifica si existe o no el archivo .sql y crea las 200 sentencias de insercion en bbdd
+	 * con las ultimas 200 tiradas q fueron validas
+	 * se da por sentado que la tabla y la bbdd ya existen ya que en el enunciado del ejercicio
+	 *  se habla solo de las sentencias de insercion
+	 * no de creacion de la bbdd ni de la tabla
+	 * por conveccion en bases de datos, los nombres de las columnas se da por sentado igualmente que estan escritos como
+	 * numero_carta, palo_carta, etcc....*/
+	
 	public static void escribeSQL(String ruta, List<Lanzamiento> lanzamientos) {
 
-		File f = new File(ruta, "sentencias.sql");
-		if (!f.exists())
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		File f = creaArchivoSiNoExiste(ruta, "sentencias.sql");
 
 		try (BufferedWriter bw2 = new BufferedWriter(new FileWriter(f))) {
 			Collections.reverse(lanzamientos);
@@ -117,7 +146,7 @@ public class Lanzamiento {
 					.limit(200).forEach(l -> {
 						try {
 							bw2.append(String.format(
-									"INSER INTO lanzamientos ('Numero de la carta' , 'Palo', 'Dado 1', 'Dado 2', 'Moneda') VALUES ('%s','%s','%s','%s','%s');%n",
+									"INSERT INTO lanzamientos ('numero_carta' , 'palo_carta', 'dado1', 'dado2', 'moneda') VALUES ('%s','%s','%s','%s','%s');%n",
 									l.carta.valor, l.carta.palo, l.dado1, l.dado2, l.moneda));
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -128,16 +157,15 @@ public class Lanzamiento {
 		}
 	}
 
+	/*el metodo escribehtml crea la tabla con las ultimas 200 tiradas que fueron validas.
+	 * no se crea la cabecera del documento html ni demas estructuras semanticas como header, body, etc...
+	 * por no hacer el ejercicio mas enrrevesado, pero seria tan sencillo como hacer un bw3.append y añadirla
+	 * en forma de String... si quieres que lo cree dimelo javi y te lo modifico en un santiamen */
+	
 	public static void escribeHTML(String ruta, List<Lanzamiento> lanzamientos) {
 
-		File f = new File(ruta, "tablaLanzamientos.html");
-		if (!f.exists())
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
+		File f = creaArchivoSiNoExiste(ruta, "tablaLanzamientos.html");
+		
 		try (BufferedWriter bw3 = new BufferedWriter(new FileWriter(f))) {
 			Collections.reverse(lanzamientos);
 			bw3.append(
@@ -158,19 +186,15 @@ public class Lanzamiento {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return String.format("Lanzamiento con moneda %s, dado 1 %d, dado 2 %d, y carta %s %s%n", moneda, dado1, dado2,
-				carta.palo, carta.valor);
-	}
-
 	public static void main(String[] args) {
 
-		String ruta = "C:\\Users\\migue\\Desktop\\repo 2º dam\\2DAM\\programacion\\examenAccesoADatos\\src\\examen\\";
-		escribeTXT(ruta);
+		/**/
+		
+		String ruta = "C:\\Users\\Usuario\\Desktop";
+		//escribeTXT(ruta);
 		List<Lanzamiento> lanzamientos = leeTXT(ruta);
-		escribeSQL(ruta, lanzamientos);
-		escribeHTML(ruta, lanzamientos);
+		//escribeSQL(ruta, lanzamientos);
+		//escribeHTML(ruta, lanzamientos);
 
 	}
 }
