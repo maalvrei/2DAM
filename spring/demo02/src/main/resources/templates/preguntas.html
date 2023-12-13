@@ -1,32 +1,67 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th='http://thymeleaf.org'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Verdadero o Falso</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario Verdadero o Falso</title>
+<style>
+div {
+	text-align: center;
+	margin: 5px;
+}
+input[type="submit"] {
+  margin-top: 20px; 
+}
+</style>
 </head>
 <body>
+	<main>
+		<div th:if='${pregunta.tipo.equals("SC")}'>
+			<h1 th:text="${pregunta.pregunta}"></h1>
 
-    <h2>Formulario de Preguntas Verdadero o Falso</h2>
+			<form action="#" method="post">
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="respuesta1"> <span th:text="${pregunta.respuesta1}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="respuesta2"> <span th:text="${pregunta.respuesta2}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="respuesta3"> <span th:text="${pregunta.respuesta3}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="respuesta4"> <span th:text="${pregunta.respuesta4}"></span>
+					</label>
+				</div>
+				
+				<div><input type="submit" value="Enviar"></div>
+			</form>
+		</div>
+		<div th:if='${pregunta.tipo.equals("VF")}'>
+			<h1 th:text="${pregunta.pregunta}"></h1>
 
-    <form action="/formulario" method="/formulario">
-        <!-- Pregunta 1 -->
-        <div>
-            <label for="pregunta1" th:text="${pregunta1}"></label>
-            <div>
-				<input type="radio" id="verdadero1" name="pregunta1" value="verdadero">
-            	<label for="verdadero1">Verdadero</label>
-            	<input type="radio" id="falso1" name="pregunta1" value="falso">
-            	<label for="falso1">Falso</label>
-            </div>
-        </div>
-        <!-- Agregar más preguntas según sea necesario -->
-
-        <!-- Botón de enviar -->
-        <div>
-            <button type="submit">Enviar respuestas</button>
-        </div>
-    </form>
-
+			<form action="#" method="post">
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="verdadero"> Verdadero
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="respuesta"value="falso"> Falso
+					</label>
+				</div>
+				
+				<div><input type="submit" value="Enviar"></div>
+			</form>
+		</div>
+	</main>
 </body>
 </html>
