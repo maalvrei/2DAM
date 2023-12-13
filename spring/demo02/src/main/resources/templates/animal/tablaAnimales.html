@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}"></title>
+<style>
+	
+	table {
+		border-collapse: collapse;
+		margin: 0 auto;
+	}
+	
+	h1, h2 {
+		text-align: center;
+	}
+	
+	td, th {
+		border: 1px solid darkgray;
+		padding: 8px;
+		text-align: center;
+	}
+	
+</style>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+	<h2 th:text="${subcabecera}"></h2>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Peso (gr.)</th>
+				<th>Precio(€)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="animal : ${listaAnimales}">
+				<td th:text="${animal.tipo}"></td>
+				<td th:text="${animal.peso}"></td>
+				<td th:text="${animal.precio}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

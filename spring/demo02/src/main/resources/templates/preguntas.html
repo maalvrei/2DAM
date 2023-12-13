@@ -9,34 +9,17 @@
 
     <h2>Formulario de Preguntas Verdadero o Falso</h2>
 
-    <form action="/procesar_respuestas" method="post">
+    <form action="/formulario" method="/formulario">
         <!-- Pregunta 1 -->
         <div>
             <label for="pregunta1" th:text="${pregunta1}"></label>
-            <input type="radio" id="verdadero1" name="pregunta1" value="verdadero">
-            <label for="verdadero1">Verdadero</label>
-            <input type="radio" id="falso1" name="pregunta1" value="falso">
-            <label for="falso1">Falso</label>
+            <div>
+				<input type="radio" id="verdadero1" name="pregunta1" value="verdadero">
+            	<label for="verdadero1">Verdadero</label>
+            	<input type="radio" id="falso1" name="pregunta1" value="falso">
+            	<label for="falso1">Falso</label>
+            </div>
         </div>
-
-        <!-- Pregunta 2 -->
-        <div>
-            <label for="pregunta2"th:text="${pregunta2}"></label>
-            <input type="radio" id="verdadero2" name="pregunta2" value="verdadero">
-            <label for="verdadero2">Verdadero</label>
-            <input type="radio" id="falso2" name="pregunta2" value="falso">
-            <label for="falso2">Falso</label>
-        </div>
-
-        <!-- Pregunta 3 -->
-        <div>
-            <label for="pregunta3"th:text="${pregunta3}"></label>
-            <input type="radio" id="verdadero3" name="pregunta3" value="verdadero">
-            <label for="verdadero3">Verdadero</label>
-            <input type="radio" id="falso3" name="pregunta3" value="falso">
-            <label for="falso3">Falso</label>
-        </div>
-
         <!-- Agregar más preguntas según sea necesario -->
 
         <!-- Botón de enviar -->

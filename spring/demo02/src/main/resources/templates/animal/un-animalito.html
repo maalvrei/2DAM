@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:if="${elAnimal == null}">No hay ningún animal del que mostrar datos</h1>
+	<div th:if="${elAnimal != null}">
+	<h1 th:text="${cabecera}"></h1>
+	<h2 th:text="${subcabecera}"></h2>
+	<ul >
+		<li>Tipo: <span th:text="${elAnimal.tipo}"></span></li>
+		<li>Precio (€): <span th:text="${elAnimal.precio}"></span></li>
+		<li>Peso: (gr): <span th:text="${elAnimal.peso}"></span></li>
+	</ul>
+	</div>
+	<p th:if="${elAnimal==null}">No hay animal</p>
+</body>
+</html>
