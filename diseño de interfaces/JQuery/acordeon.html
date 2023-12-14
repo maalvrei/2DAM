@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acordeón con Animación</title>
+  <script src="jquery-3.7.1.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    main {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    .acordeon-item, .todos {
+      border: 1px solid #ddd;
+      margin-bottom: 4px;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out; /* Agregamos la transición */
+    }
+
+    .boton, .todos {
+      background-color: #f48515;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .desarrollo {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <div class="acordeon-item">
+    <div class="todos">Cerrar todos</div>
+    <div class="boton">Opción 1</div>
+    <div class="desarrollo">
+      <p>Contenido de la Opción 1.</p>
+    </div>
+  </div>
+  <div class="acordeon-item">
+    <div class="boton">Opción 2</div>
+    <div class="desarrollo">
+      <p>Contenido de la Opción 2.</p>
+    </div>
+  </div>
+  <div class="acordeon-item">
+    <div class="boton">Opción 3</div>
+    <div class="desarrollo">
+      <p>Contenido de la Opción 3.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+  /*document.addEventListener('DOMContentLoaded', function () {
+    const accordionItems = document.querySelectorAll('.acordeon-item');
+
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.boton');
+
+      header.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  });*/
+  $(document).ready(function() {
+    $(".desarollo").hide();
+    $(".boton").on("click", function() {
+        $(this).next().slideToggle(1000)
+    })
+  })
+
+  $(document).ready(function() {
+    var ta = false
+    $(".desarollo").hide();
+    $(".todos").on("click", function() {
+        var cerrados = false;
+        $(".desarrollo").slideToggle(1000)
+        cerrados = true
+        
+        if (cerrados == true) {
+            $(".todos").html("Abrir todos")
+            cerrados = false
+        }
+        if (cerrados == false) {
+            $(".todos").html("Cerrar todos")
+        }
+        
+    })
+  })
+</script>
+
+</body>
+</html>

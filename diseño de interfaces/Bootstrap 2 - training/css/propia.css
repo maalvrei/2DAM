@@ -1,0 +1,23 @@
+body{
+    background-color: #252B42;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: auto , 80vh ;
+}
+
+
+.text-primary{
+    color:#23A6F0!important;
+}
+
+.btn-primary{
+    background-color:#23A6F0!important;
+    border-color:#23A6F0!important;
+}
+
+@media (min-width:576px) {
+   body {
+    background-size: 100%, auto;
+   } 
+}

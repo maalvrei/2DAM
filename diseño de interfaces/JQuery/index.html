@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 1</title>
+    <script src="jquery-3.7.1.js"></script>
+</head>
+<body>
+    
+    <p>hola</p>
+    <button id="boton">Pasa</button>
+
+    <script>
+        $(document).ready(function() {
+            $("p").hide()
+            $("#boton").on("click", function(){
+                $("p").slideDown(4000)
+                $("p").css({"color": "red", "font-size" : "50px"})
+            })
+            
+        });
+    </script>
+</body>
+</html>
