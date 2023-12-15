@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data attribute</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <output></output>
+    <div style="display: none;">
+        <div id="dato-1" class="dato" data-id="1" data-nombre="Juan" data-apellido="Ruiz">Juan Ruiz</div>
+        <div id="dato-2" class="dato" data-id="2" data-nombre="Víctor" data-apellido="Hugo">Víctor Hugo</div>
+        <div id="dato-3" class="dato" data-id="3" data-nombre="Cristina" data-apellido="Campos">Cristina Campos</div>
+    </div>
+    <script>
+
+        var unDato = document.getElementById("dato-1").dataset.apellido;
+        var salida = document.querySelector("output");
+        var datos = document.getElementsByClassName("dato");
+
+        for (var i = 0;  i < datos.length ; i++) {
+            salida.innerHTML += datos[i];
+        }
+        
+
+    </script>
+</body>
+
+</html>

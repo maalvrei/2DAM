@@ -45,7 +45,7 @@
 
 <main>
   <div class="acordeon-item">
-    <div class="todos">Cerrar todos</div>
+    <div class="todos">Mostrar todos</div>
     <div class="boton">Opción 1</div>
     <div class="desarrollo">
       <p>Contenido de la Opción 1.</p>
@@ -77,29 +77,43 @@
       });
     });
   });*/
-  $(document).ready(function() {
-    $(".desarollo").hide();
+  /*$(document).ready(function() {
+    $(".desarrollo").hide();
     $(".boton").on("click", function() {
         $(this).next().slideToggle(1000)
     })
-  })
+  })*/
 
   $(document).ready(function() {
-    var ta = false
-    $(".desarollo").hide();
+    var abierto = true;
+    var total = $(".desarrollo").length;
+    
+    
+    $(".desarrollo").hide();
+    $(".boton").on("click",function() {
+      $(this).next().slideToggle(500);
+      $(this).next().toggleClass("abierto");
+      totalAbiertos = $(".abierto").length;
+      if (totalAbiertos == total) {
+        $(".todos").html("Ocultar todos");
+        abierto = false;
+      } else {
+        $(".todos").html("Mostrar todos");
+        abierto = true;
+      }
+      console.log(total + " - " + totalAbiertos)
+    })
+
     $(".todos").on("click", function() {
-        var cerrados = false;
-        $(".desarrollo").slideToggle(1000)
-        cerrados = true
-        
-        if (cerrados == true) {
-            $(".todos").html("Abrir todos")
-            cerrados = false
-        }
-        if (cerrados == false) {
-            $(".todos").html("Cerrar todos")
-        }
-        
+      if (abierto == true) {
+        $(".desarrollo").slideDown(1000);
+        abierto = false;
+        $(this).html("Ocultar todo");
+      } else {
+        $(".desarrollo").slideUp();
+        abierto = true;
+        $(this).html("Mostrar todos");
+      }
     })
   })
 </script>
