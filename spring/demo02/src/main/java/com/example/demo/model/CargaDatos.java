@@ -24,19 +24,6 @@ public class CargaDatos {
 		return lineas;
 	}
 	
-	
-	public static List<Pregunta> generaPreguntas(List<String[]> lineas) {
-		List<Pregunta> listaDePreguntas = new ArrayList<>();
-		for (String[] linea : lineas) {
-			if (linea[0].equals("1")) {
-				listaDePreguntas.add(new PreguntaVF(linea[1],linea[2]));
-				}
-			else if (linea[0].equals("2")) {
-				listaDePreguntas.add(new PreguntaSC(linea[1],linea[2],linea[3],linea[4],linea[5]));
-			}
-		}
-		return listaDePreguntas;
-	}
 }
 	
 

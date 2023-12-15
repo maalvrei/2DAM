@@ -17,7 +17,7 @@ input[type="submit"] {
 <body>
 	<main>
 		<div th:if='${pregunta.tipo.equals("SC")}'>
-			<h1 th:text="${pregunta.pregunta}"></h1>
+			<h1 th:text="${pregunta.enunciado}"></h1>
 
 			<form action="#" method="post">
 				<div>
@@ -45,7 +45,7 @@ input[type="submit"] {
 			</form>
 		</div>
 		<div th:if='${pregunta.tipo.equals("VF")}'>
-			<h1 th:text="${pregunta.pregunta}"></h1>
+			<h1 th:text="${pregunta.enunciado}"></h1>
 
 			<form action="#" method="post">
 				<div>

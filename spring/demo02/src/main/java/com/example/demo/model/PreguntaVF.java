@@ -4,8 +4,8 @@ public class PreguntaVF extends Pregunta {
 	
 	boolean opcionCorrecta;
 	
-	public PreguntaVF (String pregunta, String opcionCorrecta) {
-		super(pregunta, "VF");
+	public PreguntaVF (String enunciado, String opcionCorrecta) {
+		super(enunciado, "VF");
 		this.opcionCorrecta = opcionCorrecta.equals("Verdadero")? true : false;
 	}
 	

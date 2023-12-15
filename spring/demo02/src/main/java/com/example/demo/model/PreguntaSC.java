@@ -7,9 +7,9 @@ public class PreguntaSC extends Pregunta{
 	String respuesta3;
 	String respuesta4;
 	
-	public PreguntaSC(String pregunta, String respuesta1, String respuesta2,
+	public PreguntaSC(String enunciado, String respuesta1, String respuesta2,
 			String respuesta3, String respuesta4) {
-		super(pregunta, "SC");
+		super(enunciado, "SC");
 		this.respuestaCorrecta = respuesta1;
 		this.respuesta1 = respuesta1;
 		this.respuesta2 = respuesta2;
