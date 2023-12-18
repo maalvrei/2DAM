@@ -194,8 +194,8 @@ public class Lanzamiento {
 		String ruta = "C:\\Mi11";
 		escribeTXT(ruta);
 		List<Lanzamiento> lanzamientos = leeTXT(ruta);
-		escribeSQL(ruta, lanzamientos);
-		escribeHTML(ruta, lanzamientos);
+		escribeSQL(ruta, leeTXT(ruta));
+		escribeHTML(ruta, leeTXT(ruta));
 
 	}
 }

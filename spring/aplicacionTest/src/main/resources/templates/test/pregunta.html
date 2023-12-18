@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario Verdadero o Falso</title>
+<style>
+div {
+	text-align: center;
+	margin: 5px;
+}
+input[type="submit"] {
+  margin-top: 20px; 
+}
+</style>
+</head>
+<body>
+	<main>
+		<div th:if='${pregunta.tipo.equals("SC")}'>
+			<h1 th:text="${pregunta.enunciado}"></h1>
+
+			<form action="pregunta" method="post">
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="respuesta1"> <span th:text="${pregunta.respuesta1}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="respuesta2"> <span th:text="${pregunta.respuesta2}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="respuesta3"> <span th:text="${pregunta.respuesta3}"></span>
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="respuesta4"> <span th:text="${pregunta.respuesta4}"></span>
+					</label>
+				</div>
+				<div><input type="submit" value="Comprobar"></div>
+			</form>
+			<a th:href="@{/pregunta}">Siguiente pregunta</a>
+		</div>
+		<div th:if='${pregunta.tipo.equals("VF")}'>
+			<h1 th:text="${pregunta.enunciado}"></h1>
+
+			<form action="pregunta" method="post">
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="verdadero"> Verdadero
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="resultado" value="falso"> Falso
+					</label>
+				</div>
+				
+				<div><input type="submit" value=Comprobar></div>
+			</form>
+			<a th:href="@{/pregunta}">Siguiente pregunta</a>
+		</div>
+	</main>
+</body>
+</html>
