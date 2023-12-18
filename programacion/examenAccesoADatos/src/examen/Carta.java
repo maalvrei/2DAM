@@ -18,24 +18,22 @@ public class Carta {
 	}
 	
 	public static Carta cartaAleatoriaDeLaBaraja() {
-		List<Carta> listaBaraja = new ArrayList<>();
+		List<Carta> Baraja = new ArrayList<>();
 		for (String s : valores) {
-			listaBaraja.add(new Carta(s,palos[0]));
+			Baraja.add(new Carta(s,palos[0]));
 		}
 		for (String s : valores) {
-			listaBaraja.add(new Carta(s,palos[1]));
+			Baraja.add(new Carta(s,palos[1]));
 		}
 		for (String s : valores) {
-			listaBaraja.add(new Carta(s,palos[2]));
+			Baraja.add(new Carta(s,palos[2]));
 		}
 		for (String s : valores) {
-			listaBaraja.add(new Carta(s,palos[3]));
+			Baraja.add(new Carta(s,palos[3]));
 		}
-		listaBaraja.add(new Carta("0", "Comodin"));
-		listaBaraja.add(new Carta("0", "Comodin"));
-		Carta[] Baraja = new Carta[listaBaraja.size()];
-		Baraja = listaBaraja.toArray(Baraja);
-		return Baraja[r.nextInt(0,Baraja.length)];
+		Baraja.add(new Carta("0", "Comodin"));
+		Baraja.add(new Carta("0", "Comodin"));
+		return Baraja.get(r.nextInt(0,Baraja.size()-1));
 	}
 
 }

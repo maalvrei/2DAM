@@ -191,7 +191,7 @@ public class Lanzamiento {
 		/*solo tienes que añadir la ruta donde quieras crear los archivos javi, y deberia funcionar sin problemas
 		 * si tienes cualquier problema me escribes. gracias*/
 		
-		String ruta = "tu ruta aquí";
+		String ruta = "C:\\Mi11";
 		escribeTXT(ruta);
 		List<Lanzamiento> lanzamientos = leeTXT(ruta);
 		escribeSQL(ruta, lanzamientos);
