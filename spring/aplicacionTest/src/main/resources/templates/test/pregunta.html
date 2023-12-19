@@ -22,25 +22,32 @@ input[type="submit"] {
 			<form action="pregunta" method="post">
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="respuesta1"> <span th:text="${pregunta.respuesta1}"></span>
+						<input type="radio" name="resultado" th:value="${pregunta.respuesta1}"> <span th:text="${pregunta.respuesta1}"></span>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="respuesta2"> <span th:text="${pregunta.respuesta2}"></span>
+						<input type="radio" name="resultado" th:value="${pregunta.respuesta2}"> <span th:text="${pregunta.respuesta2}"></span>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="respuesta3"> <span th:text="${pregunta.respuesta3}"></span>
+						<input type="radio" name="resultado" th:value="${pregunta.respuesta3}"> <span th:text="${pregunta.respuesta3}"></span>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="respuesta4"> <span th:text="${pregunta.respuesta4}"></span>
+						<input type="radio" name="resultado" th:value="${pregunta.respuesta4}"> <span th:text="${pregunta.respuesta4}"></span>
 					</label>
 				</div>
-				<div><input type="submit" value="Comprobar"></div>
+				<div>
+					<label>
+						<input type="hidden" name="enunciado" th:value="${pregunta.enunciado}">
+					</label>
+				</div>
+				<div>
+					<input type="submit" value="Comprobar">
+				</div>
 			</form>
 			<a th:href="@{/pregunta}">Siguiente pregunta</a>
 		</div>
@@ -50,15 +57,19 @@ input[type="submit"] {
 			<form action="pregunta" method="post">
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="verdadero"> Verdadero
+						<input type="radio" name="resultado" value="Verdadero"> Verdadero
 					</label>
 				</div>
 				<div>
 					<label>
-						<input type="radio" name="resultado" value="falso"> Falso
+						<input type="radio" name="resultado" value="Falso"> Falso
 					</label>
 				</div>
-				
+				<div>
+					<label>
+						<input type="hidden" name="enunciado" th:value="${pregunta.enunciado}">
+					</label>
+				</div>
 				<div><input type="submit" value="Comprobar"></div>
 			</form>
 			<a th:href="@{/pregunta}">Siguiente pregunta</a>

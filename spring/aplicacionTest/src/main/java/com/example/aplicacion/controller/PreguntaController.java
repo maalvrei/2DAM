@@ -29,8 +29,9 @@ public class PreguntaController {
 	}
 	
 	@PostMapping("pregunta")
-	public String m2(@RequestParam (name ="resultado") String resultado, Model model) {
-		boolean comprobacion = new PreguntaVF("2 + 2 son 5", "falso").getOpcionCorrecta().equals(resultado);
+	public String m2(@RequestParam (name ="resultado") String resultado,@RequestParam (name ="enunciado") String enunciado, Model model) {
+		Pregunta preguntaRespondida = sp.preguntaQueSeEnvio(enunciado);
+		boolean comprobacion = preguntaRespondida.getOpcionCorrecta().equals(resultado);
 		model.addAttribute("comprobacion", comprobacion);
 		return "test/resultadoPregunta";
 	}

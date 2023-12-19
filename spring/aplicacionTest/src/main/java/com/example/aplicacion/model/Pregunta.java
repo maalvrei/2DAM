@@ -6,10 +6,10 @@ public class Pregunta {
 	String tipo;
 	String opcionCorrecta;
 	
-	public Pregunta(String pregunta, String tipo, String opcionCorrecta) {
-		this.enunciado = pregunta;
+	public Pregunta(String enunciado, String tipo, String opcionCorrecta) {
+		this.enunciado = enunciado;
 		this.tipo = tipo;
-		this.opcionCorrecta = opcionCorrecta.toLowerCase();
+		this.opcionCorrecta = opcionCorrecta;
 	}
 
 	public String getEnunciado() {
