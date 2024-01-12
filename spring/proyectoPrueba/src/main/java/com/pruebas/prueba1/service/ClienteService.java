@@ -11,7 +11,7 @@ import com.pruebas.prueba1.model.repository.IClienteDAO;
 
 @Service
 public class ClienteService implements IClienteService{
-	
+	 
 	@Autowired
 	private IClienteDAO clienteDAO;
 	
