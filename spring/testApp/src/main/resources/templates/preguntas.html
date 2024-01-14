@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr>
+<th>Tipo</th>
+<th>Enunciado</th>
+</tr>
+<tr th:each="pregunta: ${preguntas}">
+<td th:text="${pregunta.tipo}"></td>
+<td th:text="${pregunta.enunciado}"></td>
+<td></td>
+</tr>
+</table>
+</body>
+</html>
