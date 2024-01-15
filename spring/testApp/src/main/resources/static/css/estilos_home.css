@@ -1,0 +1,11 @@
+header {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+}

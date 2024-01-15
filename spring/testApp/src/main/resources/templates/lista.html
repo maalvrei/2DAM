@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Listado</title>
+    <link th:href="@{/css/estilos_lista.css}" rel="stylesheet">
+</head>
+
+<body>
+    <nav><a th:href="@{/home}">Ir al home</a></nav>
+    <main>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Enunciado</th>
+                <th></th>
+            </tr>
+            <tr th:each="pregunta: ${preguntas}">
+                <td th:text="${pregunta.id}"></td>
+                <td th:text="${pregunta.tipo}"></td>
+                <td th:text="${pregunta.enunciado}"></td>
+                <td><a th:ref="@{/home/modificar_pregunta} + ${pregunta.id}">Modificar</a></td>
+            </tr>
+        </table>
+    </main>
+
+</body>
+
+</html>

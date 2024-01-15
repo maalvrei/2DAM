@@ -18,14 +18,12 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	@Override
 	@Transactional (readOnly = true)
 	public Optional<Pregunta> findById(Long id) {
-		// TODO Auto-generated method stub
 		return preguntaRepository.findById(id);
 	}
 
 	@Override
 	@Transactional (readOnly = true)
 	public Iterable<Pregunta> findAll() {
-		// TODO Auto-generated method stub
 		return preguntaRepository.findAll();
 	}
 
