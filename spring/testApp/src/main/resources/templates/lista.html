@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es" xmlns:th='http://thymeleaf.org'>
 <head>
     <meta charset="ISO-8859-1">
     <title>Listado</title>
     <link th:href="@{/css/estilos_lista.css}" rel="stylesheet">
 </head>
-
 <body>
-    <nav><a th:href="@{/home}">Ir al home</a></nav>
+    <nav>
+    <div class="botonNav"><a th:href="@{/home}">Ir al home</a></div>
+    <div class="botonNav"><a th:href="@{/home/formulario}">Crear nueva pregunta</a></div>
+    </nav>
     <main>
         <table>
             <tr>
@@ -16,16 +17,16 @@
                 <th>Tipo</th>
                 <th>Enunciado</th>
                 <th></th>
+                <th></th>
             </tr>
             <tr th:each="pregunta: ${preguntas}">
                 <td th:text="${pregunta.id}"></td>
                 <td th:text="${pregunta.tipo}"></td>
                 <td th:text="${pregunta.enunciado}"></td>
-                <td><a th:ref="@{/home/modificar_pregunta} + ${pregunta.id}">Modificar</a></td>
+                <td><a th:href="@{/home/formulario/} + ${pregunta.id}">Modificar</a></td>
+                <td><a th:href="@{/home/eliminar/} + ${pregunta.id}">Eliminar</a></td>
             </tr>
         </table>
     </main>
-
 </body>
-
 </html>
