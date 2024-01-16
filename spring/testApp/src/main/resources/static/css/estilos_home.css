@@ -4,8 +4,12 @@ header {
 }
 
 nav {
-    display: flex;
-    justify-content: center;
+	text-align:center;
     font-size: 25px;
     font-family: 'Roboto', sans-serif;
+}
+
+div {
+	display: flex;
+    justify-content:center;
 }

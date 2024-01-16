@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,16 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	@Transactional (readOnly = true)
 	public Iterable<Pregunta> findAll() {
 		return preguntaRepository.findAll();
+	}
+	
+	@Override
+	@Transactional (readOnly = true)
+	public Iterable<Pregunta> find10Aleatories() {
+		List<Pregunta> listaDeTodas = (List<Pregunta>) preguntaRepository.findAll();
+		List<Pregunta> listaCon10Aleatorias = new ArrayList<>();
+		Collections.shuffle(listaDeTodas);
+		listaDeTodas.stream().limit(10).forEach(p -> listaCon10Aleatorias.add(p));
+		return listaCon10Aleatorias;
 	}
 
 	@Override

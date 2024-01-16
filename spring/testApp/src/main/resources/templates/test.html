@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test</title>
+</head>
+<header>
+<h1>Pregunta <span th:text="${intento}"></span> de 10</h1>
+</header>
+<nav>
+	<a th:href="@{/home}">Cancelar y volver al home</a>
+</nav>
+<body>
+	<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
+	<h2 th:text="${pregunta.enunciado}"></h2>
+		<form th:action="@{/home/testComprobar}" th:object="${pregunta}" method="post">
+			<input type="radio" name="respuesta" id="verdadero" value="Verdadero"></input>
+			<label for="verdadero">Verdadero</label>
+			<input type="radio" name="respuesta" id="falso" value="Falso"></input>
+			<label for="falso">Falso</label>
+			<input type="submit" value="Siguiente pregunta">
+			<input type="hidden" name="id" th:value="${pregunta.id}">
+			<input type="hidden" name="intento" th:value="${intento}">
+		</form>
+	</div>
+
+	<div th:if='${pregunta.tipo.equals("sc")}' class="cajaFormulario">
+	<h1 th:text="${pregunta.enunciado}"></h1>
+		<form th:action="@{/home/testComprobar}" th:object="${pregunta}" method="post">
+			<input type="radio" name="respuesta" id="respuesta1" th:value="${pregunta.respuesta1}">
+			<label for="respuesta1" th:text="${pregunta.respuesta1}"></label>
+			<input type="radio" name="respuesta" th:value="${pregunta.respuesta2}">
+			<label for="respuesta2" th:text="${pregunta.respuesta2}"></label>
+			<input type="radio" name="respuesta" th:value="${pregunta.respuesta3}">
+			<label for="respuesta3" th:text="${pregunta.respuesta3}"></label>
+			<input type="radio" name="respuesta" th:value="${pregunta.respuesta4}">
+			<label for="respuesta4" th:text="${pregunta.respuesta4}"></label>
+			<input type="submit" value="Siguiente pregunta">
+			<input type="hidden" name="id" th:value="${pregunta.id}">
+			<input type="hidden" name="intento" th:value="${intento}">
+		</form>
+	</div>
+</body>
+</html>

@@ -8,6 +8,7 @@ public interface IPreguntaService {
 
 	Optional<Pregunta> findById(Long id);
 	Iterable<Pregunta> findAll();
+	Iterable<Pregunta> find10Aleatories();
 	void save(Pregunta pregunta);
 	void delete(Long id);
 	
