@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.model.entity.Pregunta;
 import com.example.demo.service.IPreguntaService;
@@ -27,6 +28,18 @@ public class PreguntaController {
 	public String listar(Model model) {
 		model.addAttribute("preguntas", preguntaService.findAll());
 		return "lista";
+	}
+	
+	@ResponseBody
+	@GetMapping("/rest/listar")
+	public Iterable<Pregunta> listarRest() {
+		return preguntaService.findAll();
+	}
+	
+	@ResponseBody
+	@GetMapping("/rest/listar/{id}")
+	public Optional<Pregunta> idRest(@PathVariable long id) {
+		return preguntaService.findById(id);
 	}
 
 	@GetMapping("/home")
@@ -67,7 +80,7 @@ public class PreguntaController {
 			return "formulario_vf";
 	}
 
-	@GetMapping("/home/test")
+	/*@GetMapping("/home/test")
 	public String test(Model model, HttpSession session) {
 		int intento = 0;
 		@SuppressWarnings("unchecked")
@@ -87,6 +100,6 @@ public class PreguntaController {
 		intento +=1;
 		session.setAttribute("lista", lista);
 		return "redirect:test";
-	}
+	}*/
 
 }
