@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.model.entity.Pregunta;
 import com.example.demo.service.IPreguntaService;
@@ -20,6 +23,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PreguntaController {
+	
+	@Autowired
+    private RestTemplate restTemplate;
 
 	@Autowired
 	private IPreguntaService preguntaService;
@@ -28,18 +34,6 @@ public class PreguntaController {
 	public String listar(Model model) {
 		model.addAttribute("preguntas", preguntaService.findAll());
 		return "lista";
-	}
-	
-	@ResponseBody
-	@GetMapping("/rest/listar")
-	public Iterable<Pregunta> listarRest() {
-		return preguntaService.findAll();
-	}
-	
-	@ResponseBody
-	@GetMapping("/rest/listar/{id}")
-	public Optional<Pregunta> idRest(@PathVariable long id) {
-		return preguntaService.findById(id);
 	}
 
 	@GetMapping("/home")
