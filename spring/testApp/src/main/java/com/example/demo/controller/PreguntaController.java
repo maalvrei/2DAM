@@ -74,20 +74,30 @@ public class PreguntaController {
 			return "formulario_vf";
 	}
 
-	/*@GetMapping("/home/test")
-	public String test(Model model, HttpSession session) {
-		int intento = 0;
-		@SuppressWarnings("unchecked")
-		List<Pregunta> lista = (List<Pregunta>) session.getAttribute("lista");
-		if (lista == null)
-			lista = (List<Pregunta>) preguntaService.find10Aleatories();
-		model.addAttribute("pregunta", lista.get(intento));
-		model.addAttribute("intento", intento);
+	@GetMapping("/home/test")
+	public String test(Model model) {
+		List<Pregunta> lista = (List<Pregunta>) preguntaService.find10Aleatories();
+		lista = lista.stream().limit(2).toList();
 		model.addAttribute("lista", lista);
 		return "test";
 	}
+	
+	@PostMapping("/home/test")
+	public String compruebaTest(Model model, @RequestParam int pregunta1, @RequestParam int pregunta2) {
+		int aciertos = 0;
+		List<Pregunta> lista = (ArrayList<Pregunta>) preguntaService.findAll();
+		List<Pregunta> preguntasEnviadas = new ArrayList<>();
+		lista.stream().forEach(p-> {
+			 if (p.getId() == pregunta1) preguntasEnviadas.add(p);
+		});
+		lista.stream().forEach(p-> {
+			 if (p.getId() == pregunta2) preguntasEnviadas.add(p);
+		});
+		
+		return "test";
+	}
 
-	@PostMapping("/home/testComprobar")
+	/*@PostMapping("/home/testComprobar")
 	public String sigueTest(Model model, @RequestParam String respuesta, HttpSession session, @RequestParam long id, @RequestParam int intento) {
 		List<Pregunta> lista = (List<Pregunta>) session.getAttribute("lista");
 		lista.remove(lista.size()-intento);

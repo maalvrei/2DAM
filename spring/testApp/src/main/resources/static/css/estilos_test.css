@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+
+.cajaFormulario {
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    width: 600px; /* Puedes ajustar el ancho según tus necesidades */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color:white !important; 
+}
+
+.cajaFormulario:hover {
+	background-color: #ccc !important; 
+	transition: 1s;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+nav {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+a {
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+	background-color:white !important; 
+}
+
+html {
+	    font-family: 'Roboto', sans-serif;
+	    background-color: aquamarine;
+}
