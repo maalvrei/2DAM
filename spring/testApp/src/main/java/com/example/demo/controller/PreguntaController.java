@@ -23,9 +23,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PreguntaController {
-	
+
 	@Autowired
-    private RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
 	@Autowired
 	private IPreguntaService preguntaService;
@@ -81,29 +81,35 @@ public class PreguntaController {
 		model.addAttribute("lista", lista);
 		return "test";
 	}
-	
+
 	@PostMapping("/home/test")
-	public String compruebaTest(Model model, @RequestParam int pregunta1, @RequestParam int pregunta2) {
-		int aciertos = 0;
-		List<Pregunta> lista = (ArrayList<Pregunta>) preguntaService.findAll();
-		List<Pregunta> preguntasEnviadas = new ArrayList<>();
-		lista.stream().forEach(p-> {
-			 if (p.getId() == pregunta1) preguntasEnviadas.add(p);
-		});
-		lista.stream().forEach(p-> {
-			 if (p.getId() == pregunta2) preguntasEnviadas.add(p);
-		});
+	public String compruebaTest(Model model, @RequestParam String respuesta0, @RequestParam String respuesta1) {
+		List<Pregunta> listaDePreguntas = (ArrayList<Pregunta>) preguntaService.findAll();
+		int acertadas = 0;
+		Long id1 = Long.valueOf(respuesta0.split("-")[0]);
+		String respuestaSeleccionada1 = respuesta0.split("-")[1];
+		for (Pregunta p : listaDePreguntas) {
+			if (p.getId() == id1 && p.getRespuestaCorrecta().equals(respuestaSeleccionada1))
+				acertadas += 1;
+		}
+		Long id2 = Long.valueOf(respuesta1.split("-")[0]);
+		String respuestaSeleccionada2 = respuesta1.split("-")[1];
+		for (Pregunta p : listaDePreguntas) {
+			if (p.getId() == id2 && p.getRespuestaCorrecta().equals(respuestaSeleccionada2))
+				acertadas += 1;
+		}
 		
-		return "test";
+		
+		model.addAttribute("acertadas",acertadas);
+		return "resultado_test";
 	}
 
-	/*@PostMapping("/home/testComprobar")
-	public String sigueTest(Model model, @RequestParam String respuesta, HttpSession session, @RequestParam long id, @RequestParam int intento) {
-		List<Pregunta> lista = (List<Pregunta>) session.getAttribute("lista");
-		lista.remove(lista.size()-intento);
-		intento +=1;
-		session.setAttribute("lista", lista);
-		return "redirect:test";
-	}*/
+	/*
+	 * @PostMapping("/home/testComprobar") public String sigueTest(Model
+	 * model, @RequestParam String respuesta, HttpSession session, @RequestParam
+	 * long id, @RequestParam int intento) { List<Pregunta> lista = (List<Pregunta>)
+	 * session.getAttribute("lista"); lista.remove(lista.size()-intento); intento
+	 * +=1; session.setAttribute("lista", lista); return "redirect:test"; }
+	 */
 
 }

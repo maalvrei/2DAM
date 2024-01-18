@@ -14,37 +14,38 @@
 </nav>
 
 <body>
+<form th:action="@{/home/test}" method="post">
 	<div th:each="pregunta: ${lista}">
 		<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-			<form th:action="@{/home/testComprobar}" th:object="${pregunta}" method="post">
-				<p><input type="radio" th:name="${pregunta.id}" id="verdadero" value="Verdadero"></input>
+			
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="verdadero" th:value="${pregunta.id + '-verdadero'}"></input>
 					<label for="verdadero">Verdadero</label>
 				</p>
-				<p><input type="radio" th:name="${pregunta.id}" id="falso" value="Falso"></input>
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="falso" th:value="${pregunta.id + '-falso'}"></input>
 					<label for="falso">Falso</label>
 				</p>
-			</form>
 		</div>
 		<div th:if='${pregunta.tipo.equals("sc")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-			<form th:action="@{/home/testComprobar}" th:object="${pregunta}" method="post">
-				<p><input type="radio" th:name="${pregunta.id}" id="respuesta1" th:value="${pregunta.respuesta1}">
+			
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta1" th:value="${pregunta.id + '-' +  pregunta.respuesta1}">
 					<label for="respuesta1" th:text="${pregunta.respuesta1}"></label>
 				</p>
-				<p><input type="radio" th:name="${pregunta.id}" id="respuesta2" th:value="${pregunta.respuesta2}">
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta2" th:value="${pregunta.id + '-' +  pregunta.respuesta2}">
 					<label for="respuesta2" th:text="${pregunta.respuesta2}"></label>
 				</p>
-				<p><input type="radio" th:name="${pregunta.id}" id="respuesta3" th:value="${pregunta.respuesta3}">
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta3" th:value="${pregunta.id + '-' +  pregunta.respuesta3}">
 					<label for="respuesta3" th:text="${pregunta.respuesta3}"></label>
 				</p>
-				<p><input type="radio" th:name="${pregunta.id}" id="respuesta4" th:value="${pregunta.respuesta4}">
+				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta4" th:value="${pregunta.id + '-' +  pregunta.respuesta4}">
 					<label for="respuesta4" th:text="${pregunta.respuesta4}"></label>
 				</p>
-			</form>
+			
 		</div>
 	</div>
 	<input type="submit" value="Finalizar test">
+	</form>
 </body>
 
 </html>
