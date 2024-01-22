@@ -14,31 +14,31 @@
 </nav>
 
 <body>
-<form th:action="@{/home/test}" method="post">
-	<div th:each="pregunta: ${lista}">
+<form th:action="@{/home/test}" th:object="${datos}" method="post">
+	<div th:each="pregunta: ${preguntas}">
 		<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-			
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="verdadero" th:value="${pregunta.id + '-verdadero'}"></input>
+				<input type="hidden" th:name="contestaciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
+				<p><input type="radio" name="verdadero" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="verdadero" value="Verdadero"></input>
 					<label for="verdadero">Verdadero</label>
 				</p>
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="falso" th:value="${pregunta.id + '-falso'}"></input>
+				<p><input type="radio" name="falso" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="falso" value="Falso"></input>
 					<label for="falso">Falso</label>
 				</p>
 		</div>
 		<div th:if='${pregunta.tipo.equals("sc")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-			
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta1" th:value="${pregunta.id + '-' +  pregunta.respuesta1}">
+				<input type="hidden" th:name="contestaciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
+				<p><input type="radio" name="respuesta1" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta1" th:value="${pregunta.respuesta1}">
 					<label for="respuesta1" th:text="${pregunta.respuesta1}"></label>
 				</p>
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta2" th:value="${pregunta.id + '-' +  pregunta.respuesta2}">
+				<p><input type="radio" name="respuesta2" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta2" th:value="${pregunta.respuesta2}">
 					<label for="respuesta2" th:text="${pregunta.respuesta2}"></label>
 				</p>
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta3" th:value="${pregunta.id + '-' +  pregunta.respuesta3}">
+				<p><input type="radio" name="respuesta3" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta3" th:value="${pregunta.respuesta3}">
 					<label for="respuesta3" th:text="${pregunta.respuesta3}"></label>
 				</p>
-				<p><input type="radio" th:name="${'respuesta' + lista.indexOf(pregunta)}" id="respuesta4" th:value="${pregunta.id + '-' +  pregunta.respuesta4}">
+				<p><input type="radio" name="respuesta4" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta4" th:value="${pregunta.respuesta4}">
 					<label for="respuesta4" th:text="${pregunta.respuesta4}"></label>
 				</p>
 			

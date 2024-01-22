@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.model.entity.Pregunta;
+import com.example.demo.model.entity.Contestacion;
+import com.example.demo.model.entity.DatosExamen;
 import com.example.demo.service.IPreguntaService;
 
 import jakarta.servlet.http.HttpSession;
@@ -76,32 +79,20 @@ public class PreguntaController {
 
 	@GetMapping("/home/test")
 	public String test(Model model) {
-		List<Pregunta> lista = (List<Pregunta>) preguntaService.find10Aleatories();
-		lista = lista.stream().limit(2).toList();
-		model.addAttribute("lista", lista);
+		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.find10Aleatories();
+		DatosExamen datos = new DatosExamen();
+		for (Pregunta pregunta : preguntas) datos.contestaciones.add(new Contestacion());
+		model.addAttribute("preguntas", preguntas);
+		model.addAttribute("datos",datos);
 		return "test";
 	}
 
 	@PostMapping("/home/test")
-	public String compruebaTest(Model model, @RequestParam String respuesta0, @RequestParam String respuesta1) {
-		List<Pregunta> listaDePreguntas = (ArrayList<Pregunta>) preguntaService.findAll();
-		int acertadas = 0;
-		Long id1 = Long.valueOf(respuesta0.split("-")[0]);
-		String respuestaSeleccionada1 = respuesta0.split("-")[1];
-		for (Pregunta p : listaDePreguntas) {
-			if (p.getId() == id1 && p.getRespuestaCorrecta().equals(respuestaSeleccionada1))
-				acertadas += 1;
-		}
-		Long id2 = Long.valueOf(respuesta1.split("-")[0]);
-		String respuestaSeleccionada2 = respuesta1.split("-")[1];
-		for (Pregunta p : listaDePreguntas) {
-			if (p.getId() == id2 && p.getRespuestaCorrecta().equals(respuestaSeleccionada2))
-				acertadas += 1;
-		}
-		
-		
-		model.addAttribute("acertadas",acertadas);
-		return "resultado_test";
+	public String compruebaTest(Model model, DatosExamen datos) {
+		Long contador = datos.contestaciones.stream().filter(c -> preguntaService.respuestaEsCorrecta(c.getIdPregunta(), c.getOpcionSeleccionada())).count();
+		model.addAttribute("datos",datos.contestaciones);
+		model.addAttribute("contador",contador);
+		return "resultado_test.html";
 	}
 
 	/*

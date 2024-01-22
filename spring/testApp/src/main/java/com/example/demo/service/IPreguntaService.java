@@ -11,5 +11,6 @@ public interface IPreguntaService {
 	Iterable<Pregunta> find10Aleatories();
 	void save(Pregunta pregunta);
 	void delete(Long id);
+	boolean respuestaEsCorrecta(Long id, String opcionSeleccionada);
 	
 }

@@ -50,7 +50,13 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	@Transactional
 	public void delete(Long id) {
 		preguntaRepository.deleteById(id);
-		
 	}
+
+	@Override
+	@Transactional (readOnly = true)
+	public boolean respuestaEsCorrecta(Long id, String opcionSeleccionada) {
+		return preguntaRepository.findById(id).orElse(null).getRespuestaCorrecta().equals(opcionSeleccionada);
+	}
+	
 
 }
