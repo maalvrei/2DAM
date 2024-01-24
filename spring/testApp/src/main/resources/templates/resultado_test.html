@@ -5,10 +5,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:each="contestacion : ${datos}">
-		<p th:text="${contestacion.idPregunta}"></p>
-		<p th:text="${contestacion.opcionSeleccionada}"></p>
-	</div>
-	<p th:text="${contador}"></p>
+	<h1 th:if="${acertadas==10}">HAS ACERTADO TODAS</h1>
 </body>
 </html>

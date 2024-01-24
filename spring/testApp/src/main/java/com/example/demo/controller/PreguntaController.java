@@ -89,9 +89,8 @@ public class PreguntaController {
 
 	@PostMapping("/home/test")
 	public String compruebaTest(Model model, DatosExamen datos) {
-		Long contador = datos.contestaciones.stream().filter(c -> preguntaService.respuestaEsCorrecta(c.getIdPregunta(), c.getOpcionSeleccionada())).count();
-		model.addAttribute("datos",datos.contestaciones);
-		model.addAttribute("contador",contador);
+		Long acertadas = datos.contestaciones.stream().filter(c -> preguntaService.respuestaEsCorrecta(c.getIdPregunta(), c.getOpcionSeleccionada())).count();
+		model.addAttribute("acertadas",acertadas);
 		return "resultado_test.html";
 	}
 
