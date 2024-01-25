@@ -7,10 +7,27 @@
 </head>
 <body>
     <nav>
-    <div class="botonNav"><a th:href="@{/home}">Ir al home</a></div>
-    <div class="botonNav"><a th:href="@{/home/formulario}">Crear nueva pregunta</a></div>
+    <a class="botonNav" th:href="@{/home}">Ir al home</a>
+    <a class="botonNav" th:href="@{/home/formulario}">Crear nueva pregunta</a>
     </nav>
     <main>
+    	<section>
+    		<form id="filtros" th:action="@{/home/listar}" method="post">
+    			<div><span>Filtrar por tipo:</span>
+    			<select id="tipo" name="tipo">
+        			<option value="sc">Single choice</option>
+        			<option value="vf" >Verdadero o falso</option>
+    			</select>
+    			</div>
+    			<!--  <div><span>Filtrar por tema:</span>
+    			<select id="tema" name="tema">
+        			<option value="Odoo">Odoo</option>
+        			<option value="Otros" >Otros</option>
+    			</select>
+    			</div>-->
+    			<input type="submit" value="Aplicar filtros">
+    		</form>
+    	</section>
         <table>
             <tr>
                 <th>Id</th>
@@ -24,7 +41,7 @@
                 <td th:text="${pregunta.tipo}"></td>
                 <td th:text="${pregunta.enunciado}"></td>
                 <td><a th:href="@{/home/formulario/} + ${pregunta.id}">Modificar</a></td>
-                <td><a th:href="@{/home/eliminar/} + ${pregunta.id}">Eliminar</a></td>
+                <td><a class="botonEliminar" th:href="@{/home/eliminar/} + ${pregunta.id}">Eliminar</a></td>
             </tr>
         </table>
     </main>

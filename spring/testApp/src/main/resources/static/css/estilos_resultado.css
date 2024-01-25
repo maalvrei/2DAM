@@ -1,0 +1,69 @@
+@charset "ISO-8859-1";
+html {
+	font-family: 'Roboto', sans-serif;
+	background-color: #37319E;
+}
+
+body {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+
+h1 {
+	color:white;
+}
+
+h2 {
+	color:white;
+	font-size: 50px;
+	text-align:center;
+}
+
+.preguntaFallada {
+	border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+    width: 600px; 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color:#AC4550 !important;
+    color: white;
+    margin-bottom:35px;
+}
+
+a {
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white !important;
+	font-weight: bold;
+	width:30%;
+	font-size:20px;
+	text-align: center;
+}
+
+nav {
+	margin-top:20px;
+	display:flex;
+	justify-content: space-around;
+}
+
+.preguntaAcertada {
+	border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+    width: 600px; 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color:#4E9612 !important;
+    color: white;
+    margin-bottom:35px;
+}
+
+.enunciado {
+	font-size: 30px;	
+}

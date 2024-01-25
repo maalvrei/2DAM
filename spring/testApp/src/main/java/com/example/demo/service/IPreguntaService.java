@@ -12,5 +12,5 @@ public interface IPreguntaService {
 	void save(Pregunta pregunta);
 	void delete(Long id);
 	boolean respuestaEsCorrecta(Long id, String opcionSeleccionada);
-	
+	Iterable<Pregunta> fillAllByType(String type);
 }

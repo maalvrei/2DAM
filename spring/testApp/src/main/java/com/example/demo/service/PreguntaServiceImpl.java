@@ -57,6 +57,12 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	public boolean respuestaEsCorrecta(Long id, String opcionSeleccionada) {
 		return preguntaRepository.findById(id).orElse(null).getRespuestaCorrecta().equals(opcionSeleccionada);
 	}
+
+	@Override
+	public Iterable<Pregunta> fillAllByType(String type) {
+		List<Pregunta> listaPreguntasDelTipo = ((List<Pregunta>) preguntaRepository.findAll()).stream().filter(p -> p.getTipo().equals(type)).toList();
+		return listaPreguntasDelTipo;
+	}
 	
 
 }
