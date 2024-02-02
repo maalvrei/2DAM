@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Definición de Acción -->
+    <record id="action_open_proyecto" model="ir.actions.act_window">
+        <field name="name">Proyecto</field>
+        <field name="res_model">proyectos.proyecto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_tarea" model="ir.actions.act_window">
+        <field name="name">Tarea</field>
+        <field name="res_model">proyectos.tarea</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menú Principal (Nivel 1) -->
+    <menuitem id="menu_principal_id" name="Proyectos y tareas"/>
+
+    <!-- Submenú (Nivel 3) -->
+    <menuitem id="submenu_nivel_2_proyecto" name="Proyecto" parent="menu_principal_id"
+              action="action_open_proyecto"/>
+    <menuitem id="submenu_nivel_2_tarea" name="Tareas" parent="menu_principal_id"
+            action="action_open_tarea"/>
+</odoo>

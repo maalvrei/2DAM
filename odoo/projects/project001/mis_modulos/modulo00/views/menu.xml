@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Definición de Acción -->
+    <record id="action_open_presupuesto" model="ir.actions.act_window">
+        <field name="name">Presupuesto</field>
+        <field name="res_model">modulo00.presupuesto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menú Principal (Nivel 1) -->
+    <menuitem id="menu_principal_id" name="Menú Principal"/>
+
+    <!-- Submenú (Nivel 2) -->
+    <menuitem id="submenu_nivel_2_id" name="Submenú Nivel 2" parent="menu_principal_id"/>
+
+    <!-- Submenú (Nivel 3) -->
+    <menuitem id="submenu_nivel_3_id" name="Submenú Nivel 3" parent="submenu_nivel_2_id"
+              action="action_open_presupuesto"/>
+</odoo>
