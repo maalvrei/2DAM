@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Definición de la vista de creación de Proyecto -->
+        <record id="view_proyecto_form" model="ir.ui.view">
+            <field name="name">proyectos.proyecto.form</field>
+            <field name="model">proyectos.proyecto</field>
+            <field name="arch" type="xml">
+                <form string="Crear Proyecto">
+                    <sheet>
+                        <!-- Pestaña para los datos del proyecto -->
+                        <notebook>
+                            <page string="Datos del Proyecto">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="manager_id"/>
+                                    <field name="state"/>
+                                    <field name="budget"/>
+                                    <field name="priority"/>
+                                </group>
+                            </page>
+                            <!-- Pestaña para las tareas del proyecto -->
+                            <page string="Tareas del Proyecto">
+                                <group>
+                                    <field name="tarea_ids"/>
+                                </group>
+                            </page>
+                            <!-- Pestaña para los usuarios del proyecto -->
+                            <page string="Usuarios del Proyecto">
+                                <group>
+                                    <field name="user_ids"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

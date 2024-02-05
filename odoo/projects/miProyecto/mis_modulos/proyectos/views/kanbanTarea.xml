@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Definición de la vista Kanban para las tareas -->
+        <record id="view_tarea_kanban" model="ir.ui.view">
+            <field name="name">proyectos.tarea.kanban</field>
+            <field name="model">proyectos.tarea</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <!-- Definición de las columnas de la vista Kanban -->
+                    <field name="priority"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <!-- Botones de acción rápida -->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_card_content">
+                                    <div class="oe_kanban_card_header">
+                                        <div class="o_priority">
+                                            <field name="priority" widget="priority"/>
+                                        </div>
+                                        <div class="o_kanban_manage_buttons">
+                                            <button type="button" name="action_nuevo" class="oe_stat_button" string="Nuevo"/>
+                                            <button type="button" name="action_en_progreso" class="oe_stat_button" string="En Progreso"/>
+                                            <button type="button" name="action_terminado" class="oe_stat_button" string="Terminado"/>
+                                        </div>
+                                    </div>
+                                    <div class="oe_kanban_card_body">
+                                        <div class="oe_kanban_card_title">
+                                            <field name="name"/>
+                                        </div>
+                                        <div class="o_kanban_record_bottom">
+                                            <div class="oe_kanban_card_bottom">
+                                                <field name="start_date"/>
+                                                <field name="end_date"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>
