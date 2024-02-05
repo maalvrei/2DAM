@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="~{layout/base :: head}"></head>
+<body>
+	<!-- Navigation bar bootstrap -->
+	<nav th:replace="~{layout/base :: navbar}"></nav>
+
+	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+	<div class="alert alert-error" th:if="${error != null}" th:text="${error}"></div>
+	<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+	<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+	<!-- Todos los class son de bootstrap -->
+	<div class="container">
+		<h1 class="text-primary" th:text="${titulo}"></h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tipo</th>
+					<th>Enunciado</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pregunta: ${preguntas}">
+					<td th:text="${pregunta.id}"></td>
+					<td th:text="${pregunta.tipo}"></td>
+					<td th:text="${pregunta.enunciado}"></td>
+					<td>
+							<a class="btn btn-primary btn-xs" th:href="@{/home/formulario/} + ${pregunta.id}">
+									Editar
+							</a>
+					</td>
+					<td>
+							<a class="btn btn-danger btn-xs" th:href="@{/home/eliminar/} + ${pregunta.id}">
+									Eliminar
+							</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="d-flex justify-content-center">
+		<div th:replace="~{layout/paginator-nav :: paginator}"></div>
+	</div>
+	<div th:replace="~{layout/base :: footer}"></div>
+
+</body>
+</html>

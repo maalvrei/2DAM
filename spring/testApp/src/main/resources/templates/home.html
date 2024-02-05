@@ -12,6 +12,7 @@
 	<h1>Tus preguntas</h1>
 	<nav>
 		<a th:href="@{/home/listar}">Ver lista de preguntas</a>
+		<a th:href="@{/listar-paginado}">Ver lista de preguntas paginadas</a>
 		<a th:href="@{/home/test}">Comenzar test</a>
 	</nav>
 </header>
@@ -19,15 +20,19 @@
 	<section id="imagenes">
 		<figure>
     		<img th:src="@{/images/__${posiciones[0]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+    		<figcaption><a href="https://www.linkedin.com/in/maalvrei/">LinkedIn del creador</a></figcaption>
 		</figure>
 		<figure>
     		<img th:src="@{/images/__${posiciones[1]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+    		<figcaption><a href="https://www.linkedin.com/in/javilukt/">LinkedIn del profesor</a></figcaption>
 		</figure>
 		<figure>
     		<img th:src="@{/images/__${posiciones[2]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+    		<figcaption><a href="https://www.odoo.com/es_ES">Aprende más sobre Odoo</a></figcaption>
 		</figure>
 		<figure>
     		<img th:src="@{/images/__${posiciones[3]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+    		<figcaption><a href="https://corenetworkssevilla.es/">Información sobre Core Networks</a></figcaption>
 		</figure>
 	</section>
 </body>

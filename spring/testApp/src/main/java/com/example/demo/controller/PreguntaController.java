@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,14 @@ import com.example.demo.model.DatosExamen;
 import com.example.demo.model.Insulto;
 import com.example.demo.service.IPreguntaService;
 import com.example.demo.service.InsultoService;
+import com.example.demo.util.paginator.PageRender;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 public class PreguntaController {
+	
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Autowired
 	private IPreguntaService preguntaService;
@@ -120,6 +127,17 @@ public class PreguntaController {
 		model.addAttribute("contestacionesFalladas",contestacionesFalladas);
 		return "resultado_test.html";
 	}
+	
+	  @GetMapping("/listar-paginado")
+		public String listaPaginada(@RequestParam(defaultValue = "0") int page, Model model) {
+			Pageable pageRequest = PageRequest.of(page, 5);
+			Page<Pregunta> preguntas = preguntaService.listarPaginado(pageRequest);
+			PageRender<Pregunta> pageRender = new PageRender<>("/listar-paginado", preguntas); 
+			model.addAttribute("titulo", "Listado de artículos paginado");
+			model.addAttribute("preguntas",preguntas);
+			model.addAttribute("page", pageRender);
+			return "lista_paginada";
+		}
 
 	/*
 	 * @PostMapping("/home/testComprobar") public String sigueTest(Model
