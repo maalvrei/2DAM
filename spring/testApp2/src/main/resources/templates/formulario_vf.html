@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificando pregunta</title>
+    <link th:href="@{/css/estilos_formulario.css}" rel="stylesheet">
+</head>
+<body>
+	<nav><a th:href="@{/home/listar}">Cancelar y volver a la lista de preguntas</a></nav>
+    <main>
+    <form th:action="@{/home/formulario}" th:object="${pregunta}" method="post">
+    	<table>
+    		<tr>
+    			<th>Campo</th>
+    			<th>Valor</th>
+    		</tr>
+    		<tr>
+				<td>Enunciado</td>
+				<td><input type="text" th:field="*{enunciado}"/></td>
+			</tr>
+
+			<tr>
+				<td>Respuesta correcta</td>
+				<td><input type="text" th:field="*{respuestaCorrecta}"/></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" value = "Guardar pregunta"/></td>
+			</tr>
+    	</table>
+    	<input type="hidden" th:field="*{id}"/>
+    	<input type="hidden" th:field="*{tipo}"/>
+    </form>
+    </main>
+</body>
+</html>

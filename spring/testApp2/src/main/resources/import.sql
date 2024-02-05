@@ -1,0 +1,2 @@
+INSERT INTO preguntas (tema, tipo, enunciado, respuesta_correcta) VALUES ('Licencias','vf', '¿Las licencias de código abierto permiten a los usuarios ver y modificar el código fuente del software?', 'Verdadero');
+INSERT INTO preguntas (tema, tipo, enunciado, respuestas ,respuesta_correcta) VALUES ('Licencias','sc','¿Cuál es el mejor Pokémon?', 'Pokemon|Pikachu|Charmander|Tu madre', 'Pikachu');
