@@ -7,8 +7,13 @@
     <link th:href="@{/css/estilos_formulario.css}" rel="stylesheet">
 </head>
 <body>
-	<nav><a th:href="@{/home/listar}">Cancelar y volver a la lista de preguntas</a></nav>
+	<header>
+	<nav>
+		<a th:href="@{/home/listar}">Cancelar y volver a la lista de preguntas</a>
+	</nav>
+	</header>
     <main>
+    <h2>Crear pregunta verdadero o falso:</h2>
     <form th:action="@{/home/formulario}" th:object="${pregunta}" method="post">
     	<table>
     		<tr>

@@ -73,5 +73,4 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		return preguntaRepository.findAll(pageable);
 	}
 	
-
 }

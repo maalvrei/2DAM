@@ -1,6 +1,33 @@
-@charset "ISO-8859-1";
-
 html {
-	font-family: 'Roboto', sans-serif;
-	background-color: red;
+    font-family: 'Roboto', sans-serif;
+    background-color: #37319E;
+    height: 100%; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    height: 100%; 
+}
+
+img {
+	height:250px;
+	width: 250px;
+	margin:20px;
+}
+
+h1 {
+	font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+a, p {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
 }

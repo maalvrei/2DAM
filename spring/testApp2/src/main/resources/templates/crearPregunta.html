@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creando pregunta</title>
+<link th:href="@{/css/estilos_crear_pregunta.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav>
+			<a th:href="@{/lista}">Cancelar y volver a la lista de preguntas</a>
+		</nav>
+	</header>
+	<main>
+		<h2>Crear pregunta verdadero o falso:</h2>
+		<form th:action="@{/vfCreada}" th:object="${pregunta}"
+			method="post">
+			<table>
+				<tr>
+					<th>Campo</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>Enunciado</td>
+					<td><input type="text" th:field="*{enunciado}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta</td>
+					<td><select id="respuestaCorrecta" name="respuestaCorrecta"
+						th:field="*{respuestaCorrecta}">
+							<option value="Verdadero">Verdadero</option>
+							<option value="Falso">Falso</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Temática</td>
+					<td><select id="tema" name="tema" th:field="*{tema}">
+							<option value="Odoo">Odoo</option>
+							<option value="IA">Inteligencia artificial</option>
+							<option value="Informática">Informática</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Guardar pregunta" /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:name="tipo" value="vf">
+		</form>
+
+		<h2>Crear pregunta de elección única:</h2>
+		<form th:action="@{/scCreada}" th:object="${pregunta}"
+			method="post">
+			<table>
+				<tr>
+					<th>Campo</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>Enunciado</td>
+					<td><input type="text" th:field="*{enunciado}" /></td>
+				</tr>
+				<tr>
+				<tr>
+					<td>Respuesta 1</td>
+					<td><input id="respuesta1" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 2</td>
+					<td><input id="respuesta2" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 3</td>
+					<td><input id="respuesta3" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 4</td>
+					<td><input id="respuesta4" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+
+				<tr>
+					<td>Respuesta correcta</td>
+					<td><input type="text" th:field="*{respuestaCorrecta}" /></td>
+				</tr>
+				<tr>
+					<td>Temática</td>
+					<td><select id="tema" name="tema" th:field="*{tema}">
+							<option value="Odoo">Odoo</option>
+							<option value="IA">Inteligencia artificial</option>
+							<option value="Informática">Informática</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Guardar pregunta" /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:name="tipo" value="sc">
+		</form>
+	</main>
+	<script>
+    // Agregar un evento 'blur' a cada campo de texto
+    ['respuesta1', 'respuesta2', 'respuesta3', 'respuesta4'].forEach(function(id) {
+        var campo = document.getElementById(id);
+        
+        campo.addEventListener('blur', function() {
+            // Agregar '|' al final del valor
+            if (!this.value.trim().endsWith('   ')) {
+                this.value = this.value.trim() + '   ';
+            }
+        });
+
+        campo.addEventListener('focus', function() {
+            // Eliminar el último '|' si existe al final del valor
+            if (this.value.trim().endsWith('   ')) {
+                this.value = this.value.trim().slice(0, -1);
+            }
+        });
+    });
+</script>
+	
+</body>
+</html>

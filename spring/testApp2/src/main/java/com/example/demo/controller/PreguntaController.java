@@ -40,7 +40,44 @@ public class PreguntaController {
 	public String home(Model model) {
 		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();
 		model.addAttribute("preguntas",preguntas);
+		List<Integer> posicionesImagenes = new ArrayList<>();
+		for (int i = 1 ; i <=8 ; i++) posicionesImagenes.add(i);
+		Collections.shuffle(posicionesImagenes);
+		model.addAttribute("posiciones",posicionesImagenes);
 		return "home.html";
+	}
+	
+	@GetMapping("/crearPregunta")
+	public String crearPregunta(Model model) {
+		model.addAttribute("pregunta", new Pregunta());
+		return "crearPregunta";
+	}
+	
+	@PostMapping("/vfCreada")
+	public String guardaPreguntaVF(Pregunta pregunta) {
+		preguntaService.save(pregunta);
+		return "redirect:lista";
+	}
+	
+	@PostMapping("/scCreada")
+	public String guardaPreguntaSC(Pregunta pregunta) {
+	    String[] respuestas = pregunta.getRespuestas().split("   ");
+	    String respuestasPregunta = "";
+	    for (int i = 0 ; i < 4 ; i++) {
+	    	if (respuestas[i].charAt(0)==',') respuestas[i] = respuestas[i].replaceFirst(",", "");
+	    	respuestasPregunta +=respuestas[i] + "|";
+	    }
+	    respuestasPregunta = respuestasPregunta.substring(0, respuestasPregunta.length()-1);
+	    pregunta.setRespuestas(respuestasPregunta);
+	    preguntaService.save(pregunta);
+	    return "redirect:lista";
+	}
+	
+	@GetMapping("/lista")
+	public String lista (Model model) {
+		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();
+		model.addAttribute("preguntas",preguntas);
+		return "lista";
 	}
 	
 }

@@ -8,6 +8,12 @@ header {
 	align-items: center;
 }
 
+h1 {
+	font-size: 70px;
+	color: white;
+	font-weight: bold;
+}
+
 nav {
 	display: flex;
 	flex-direction: column;
@@ -38,12 +44,6 @@ a {
 	height: 200px;
 }
 
-footer {
-	text-align:center;
-	color:white;
-	font-weight:bold;
-}
-
 #imagenes {
 	display: flex;
 	flex-direction: row;
@@ -72,8 +72,3 @@ figcaption {
 	margin-top:20px;
 }
 
-h1 {
-	font-size: 70px;
-	color: white;
-	font-weight: bold;
-}

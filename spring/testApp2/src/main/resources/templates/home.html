@@ -2,15 +2,39 @@
 <html lang="es" xmlns:th='http://thymeleaf.org'>
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<link th:href="@{/css/estilos_home.css}" rel="stylesheet">
 </head>
-<body>
-	<div th:each="pregunta : ${preguntas}">
-	<h1 th:text="${pregunta.enunciado}"></h1>
-	</div>
-</body>
 
+<body>
+	<header>
+		<h1>TUS PREGUNTAS</h1>
+		<nav>
+			<a th:href="@{/lista}">Ver lista de preguntas</a>
+			<a th:href="@{/test}">Comenzar test</a>
+		</nav>
+	</header>
+
+	<section id="imagenes">
+		<figure>
+			<img th:src="@{/images/__${posiciones[0]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+			<figcaption><a href="https://www.linkedin.com/in/maalvrei/">LinkedIn del creador</a></figcaption>
+		</figure>
+		<figure>
+			<img th:src="@{/images/__${posiciones[1]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+			<figcaption><a href="https://www.linkedin.com/in/javilukt/">LinkedIn del profesor</a></figcaption>
+		</figure>
+		<figure>
+			<img th:src="@{/images/__${posiciones[2]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+			<figcaption><a href="https://www.odoo.com/es_ES">Aprende más sobre Odoo</a></figcaption>
+		</figure>
+		<figure>
+			<img th:src="@{/images/__${posiciones[3]}__.png}" class="imagenInferior" alt="Descripción de la imagen">
+			<figcaption><a href="https://corenetworkssevilla.es/">Información sobre Core Networks</a></figcaption>
+		</figure>
+	</section>
+</body>
 
 </html>

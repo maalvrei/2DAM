@@ -72,6 +72,4 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	public Page<Pregunta> listarPaginado(Pageable pageable) {
 		return preguntaRepository.findAll(pageable);
 	}
-	
-
 }
