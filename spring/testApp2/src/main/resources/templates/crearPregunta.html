@@ -13,6 +13,7 @@
 		</nav>
 	</header>
 	<main>
+	<div>
 		<h2>Crear pregunta verdadero o falso:</h2>
 		<form th:action="@{/vfCreada}" th:object="${pregunta}"
 			method="post">
@@ -48,7 +49,8 @@
 			</table>
 			<input type="hidden" th:name="tipo" value="vf">
 		</form>
-
+</div>
+<div>
 		<h2>Crear pregunta de elección única:</h2>
 		<form th:action="@{/scCreada}" th:object="${pregunta}"
 			method="post">
@@ -64,19 +66,19 @@
 				<tr>
 				<tr>
 					<td>Respuesta 1</td>
-					<td><input id="respuesta1" type="text" th:field="*{respuestas}"/></td>
+					<td><input id="respuesta1sc" type="text" th:field="*{respuestas}"/></td>
 				</tr>
 				<tr>
 					<td>Respuesta 2</td>
-					<td><input id="respuesta2" type="text" th:field="*{respuestas}"/></td>
+					<td><input id="respuesta2sc" type="text" th:field="*{respuestas}"/></td>
 				</tr>
 				<tr>
 					<td>Respuesta 3</td>
-					<td><input id="respuesta3" type="text" th:field="*{respuestas}"/></td>
+					<td><input id="respuesta3sc" type="text" th:field="*{respuestas}"/></td>
 				</tr>
 				<tr>
 					<td>Respuesta 4</td>
-					<td><input id="respuesta4" type="text" th:field="*{respuestas}"/></td>
+					<td><input id="respuesta4sc" type="text" th:field="*{respuestas}"/></td>
 				</tr>
 
 				<tr>
@@ -98,27 +100,73 @@
 			</table>
 			<input type="hidden" th:name="tipo" value="sc">
 		</form>
-	</main>
-	<script>
-    // Agregar un evento 'blur' a cada campo de texto
-    ['respuesta1', 'respuesta2', 'respuesta3', 'respuesta4'].forEach(function(id) {
-        var campo = document.getElementById(id);
-        
-        campo.addEventListener('blur', function() {
-            // Agregar '|' al final del valor
-            if (!this.value.trim().endsWith('   ')) {
-                this.value = this.value.trim() + '   ';
-            }
-        });
+		</div>
+		<div>
+		<h2>Crear pregunta de opción múltiple</h2>
+		<form th:action="@{/mcCreada}" th:object="${pregunta}"
+			method="post">
+			<table>
+				<tr>
+					<th>Campo</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>Enunciado</td>
+					<td><input type="text" th:field="*{enunciado}" /></td>
+				</tr>
+				<tr>
+				<tr>
+					<td>Respuesta 1</td>
+					<td><input id="respuesta1mc" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 2</td>
+					<td><input id="respuesta2mc" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 3</td>
+					<td><input id="respuesta3mc" type="text" th:field="*{respuestas}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 4</td>
+					<td><input id="respuesta4mc" type="text" th:field="*{respuestas}"/></td>
+				</tr>
 
-        campo.addEventListener('focus', function() {
-            // Eliminar el último '|' si existe al final del valor
-            if (this.value.trim().endsWith('   ')) {
-                this.value = this.value.trim().slice(0, -1);
-            }
-        });
-    });
-</script>
+				<tr>
+					<td>Respuesta correcta 1</td>
+					<td><input type="text" id="respuestaCorrecta1mc" th:field="*{respuestaCorrecta}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 2</td>
+					<td><input type="text" id="respuestaCorrecta2mc" th:field="*{respuestaCorrecta}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 3</td>
+					<td><input type="text" id="respuestaCorrecta3mc" th:field="*{respuestaCorrecta}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 4</td>
+					<td><input type="text" id="respuestaCorrecta4mc" th:field="*{respuestaCorrecta}" /></td>
+				</tr>
+				<tr>
+					<td>Temática</td>
+					<td><select id="tema" name="tema" th:field="*{tema}">
+							<option value="Odoo">Odoo</option>
+							<option value="IA">Inteligencia artificial</option>
+							<option value="Informática">Informática</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Guardar pregunta" /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:name="tipo" value="sc">
+		</form>
+		</div>
+	</main>
+	<script th:src="@{/js/script.js}">
+    </script>
 	
 </body>
 </html>

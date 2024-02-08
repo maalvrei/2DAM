@@ -8,40 +8,52 @@
 </head>
 <header>
 	<h1>Examen</h1>
-</header>
-<nav>
+	<nav>
 	<a th:href="@{/home}">Cancelar y volver al home</a>
 </nav>
+</header>
 
 <body>
-<form th:action="@{/home/test}" th:object="${datos}" method="post">
+<form th:action="@{/test}" th:object="${datos}" method="post">
 	<div th:each="pregunta: ${preguntas}">
 		<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-				<input type="hidden" th:name="contestaciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
-				<p><input type="radio" name="verdadero" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="verdadero" value="Verdadero"></input>
+				<p><input type="radio"  th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="verdadero" value="Verdadero"></input>
 					<label for="verdadero">Verdadero</label>
 				</p>
-				<p><input type="radio" name="falso" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="falso" value="Falso"></input>
+				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="falso" value="Falso"></input>
 					<label for="falso">Falso</label>
 				</p>
 		</div>
 		<div th:if='${pregunta.tipo.equals("sc")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
-				<input type="hidden" th:name="contestaciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
-				<p><input type="radio" name="respuesta1" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta1" th:value="${pregunta.respuesta1}">
-					<label for="respuesta1" th:text="${pregunta.respuesta1}"></label>
+				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="respuesta1" th:value="${pregunta.respuestas}">
+					<label for="respuesta1" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][0]}"></label>
 				</p>
-				<p><input type="radio" name="respuesta2" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta2" th:value="${pregunta.respuesta2}">
-					<label for="respuesta2" th:text="${pregunta.respuesta2}"></label>
+				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="respuesta2" th:value="${pregunta.respuestas}">
+					<label for="respuesta2" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][1]}"></label>
 				</p>
-				<p><input type="radio" name="respuesta3" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta3" th:value="${pregunta.respuesta3}">
-					<label for="respuesta3" th:text="${pregunta.respuesta3}"></label>
+				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="respuesta3" th:value="${pregunta.respuestas}">
+					<label for="respuesta3" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][2]}"></label>
 				</p>
-				<p><input type="radio" name="respuesta4" th:field="*{contestaciones[__${preguntas.indexOf(pregunta)}__].opcionSeleccionada}" id="respuesta4" th:value="${pregunta.respuesta4}">
-					<label for="respuesta4" th:text="${pregunta.respuesta4}"></label>
+				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="respuesta4" th:value="${pregunta.respuestas}">
+					<label for="respuesta4" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][3]}"></label>
+				</p>	
+		</div>
+		<div th:if='${pregunta.tipo.equals("mc")}' class="cajaFormulario">
+			<h1 th:text="${pregunta.enunciado}"></h1>
+				<p><input type="checkbox" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[0]}" id="respuesta1" th:value="${pregunta.respuestas}">
+					<label for="respuesta1" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][0]}"></label>
 				</p>
-			
+				<p><input type="checkbox" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[1]}" id="respuesta2" th:value="${pregunta.respuestas}">
+					<label for="respuesta2" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][1]}"></label>
+				</p>
+				<p><input type="checkbox" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[2]}" id="respuesta3" th:value="${pregunta.respuestas}">
+					<label for="respuesta3" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][2]}"></label>
+				</p>
+				<p><input type="checkbox" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[3]}" id="respuesta4" th:value="${pregunta.respuestas}">
+					<label for="respuesta4" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][3]}"></label>
+				</p>	
 		</div>
 	</div>
 	<input type="submit" value="Finalizar test">

@@ -6,10 +6,12 @@
     <link th:href="@{/css/estilos_lista.css}" rel="stylesheet">
 </head>
 <body>
+<header>
     <nav>
     <a class="botonNav" th:href="@{/home}">Ir al home</a>
     <a class="botonNav" th:href="@{/crearPregunta}">Crear nueva pregunta</a>
     </nav>
+ </header>
     <main>
     	<section>
     		<form id="filtros" th:action="@{/home/listar}" method="post">
@@ -42,8 +44,8 @@
                 <td th:text="${pregunta.tipo}"></td>
                 <td th:text="${pregunta.tema}"></td>
                 <td th:text="${pregunta.enunciado}"></td>
-                <td><a th:href="@{/home/formulario/} + ${pregunta.id}">Modificar</a></td>
-                <td><a class="botonEliminar" th:href="@{/home/eliminar/} + ${pregunta.id}">Eliminar</a></td>
+                <td><a th:href="@{/modificar/} + ${pregunta.id}">Modificar</a></td>
+                <td><a class="botonEliminar" th:href="@{/modificar/} + ${pregunta.id}">Eliminar</a></td>
             </tr>
         </table>
     </main>

@@ -43,10 +43,9 @@ tr:hover {
 
 nav {
     display: flex;
-    justify-content: center;
-    font-size: 25px;
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 20px;
+    flex-direction:row;
+    justify-content:space-around;
+    width:50%;
 }
 
 td a{
@@ -71,16 +70,21 @@ td a{
     letter-spacing: 2px;
 }
 
+header {
+	margin:30px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+
 .botonNav {
-	background-color: white;
-	border: 1px solid blue;
+	text-decoration: none;
+    font-size: 30px;
+    font-weight:bold;
+	border: 1px solid black;
 	padding: 10px;
 	border-radius: 5px;
-	text-decoration: none;
-	margin:30px;
-	margin-bottom:0px;
-	font-size:35px;
-	font-weight:bold;
+	background-color: white !important;
 }
 
 main {

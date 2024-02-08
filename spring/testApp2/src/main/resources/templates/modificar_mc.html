@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modificando pregunta</title>
+<link th:href="@{/css/estilos_modificar.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav>
+			<a th:href="@{/lista}">Cancelar y volver a la lista de preguntas</a>
+		</nav>
+	</header>
+	<main>
+		<form th:action="@{/mcModificada}" th:object="${objeto}"
+			method="post">
+			<table>
+				<tr>
+					<th>Campo</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>Enunciado</td>
+					<td><input type="text" th:field="*{enunciado}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Respuesta 1</td>
+					<td><input id="respuesta1mc" type="text" th:field="*{respuestas[0]}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 2</td>
+					<td><input id="respuesta2mc" type="text" th:field="*{respuestas[1]}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 3</td>
+					<td><input id="respuesta3mc" type="text" th:field="*{respuestas[2]}"/></td>
+				</tr>
+				<tr>
+					<td>Respuesta 4</td>
+					<td><input id="respuesta4mc" type="text" th:field="*{respuestas[3]}"/></td>
+				</tr>
+
+				<tr>
+					<td>Respuesta correcta 1</td>
+					<td><input type="text" id="respuestaCorrecta1mc" th:field="*{respuestasCorrectas[0]}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 2</td>
+					<td><input type="text" id="respuestaCorrecta2mc" th:field="*{respuestasCorrectas[1]}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 3</td>
+					<td><input type="text" id="respuestaCorrecta3mc" th:field="*{respuestasCorrectas[2]}" /></td>
+				</tr>
+				<tr>
+					<td>Respuesta correcta 4</td>
+					<td><input type="text" id="respuestaCorrecta4mc" th:field="*{respuestasCorrectas[3]}" /></td>
+				</tr>
+				<tr>
+					<td>Temática</td>
+					<td><select id="tema" name="tema" th:field="*{tema}">
+							<option value="Odoo">Odoo</option>
+							<option value="IA">Inteligencia artificial</option>
+							<option value="Informática">Informática</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Guardar pregunta" /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{tipo}" />
+		</form>
+	</main>
+</body>
+</html>

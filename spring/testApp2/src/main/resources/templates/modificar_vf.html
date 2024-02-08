@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modificando pregunta</title>
+<link th:href="@{/css/estilos_modificar.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav>
+			<a th:href="@{/lista}">Cancelar y volver a la lista de preguntas</a>
+		</nav>
+	</header>
+	<main>
+		<form th:action="@{/vfCreada}" th:object="${pregunta}" method="post">
+			<table>
+				<tr>
+					<th>Campo</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>Enunciado</td>
+					<td><input type="text" th:field="*{enunciado}" /></td>
+				</tr>
+
+				<tr>
+					<td>Respuesta correcta</td>
+					<td><select id="respuestaCorrecta" name="respuestaCorrecta"
+						th:field="*{respuestaCorrecta}">
+							<option value="Verdadero">Verdadero</option>
+							<option value="Falso">Falso</option>
+					</select></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Actualizar pregunta" /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{tipo}" /> <input type="hidden" th:field="*{tema}" />
+		</form>
+	</main>
+</body>
+</html>

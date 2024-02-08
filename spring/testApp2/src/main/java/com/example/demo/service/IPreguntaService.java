@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.example.demo.model.ModificacionPreguntaMC;
+import com.example.demo.model.ModificacionPreguntaSC;
 import com.example.demo.model.entity.Pregunta;
 
 public interface IPreguntaService {
@@ -18,4 +20,10 @@ public interface IPreguntaService {
 	boolean respuestaEsCorrecta(Long id, String opcionSeleccionada);
 	Iterable<Pregunta> fillAllByType(String type);
 	Page<Pregunta> listarPaginado(Pageable pageable);
+	Pregunta formateaRespuestasPreguntaMC(Pregunta pregunta);
+	Pregunta formateaRespuestasPreguntaSC(Pregunta pregunta);
+	ModificacionPreguntaSC objetoParaModificarPreguntaSC(Pregunta pregunta);
+	Pregunta preguntaSCDesdeObjeto(ModificacionPreguntaSC objeto);
+	ModificacionPreguntaMC objetoParaModificarPreguntaMC(Pregunta pregunta);
+	Pregunta preguntaMCDesdeObjeto(ModificacionPreguntaMC objeto);
 }
