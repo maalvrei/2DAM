@@ -185,4 +185,16 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		p.setTipo(objeto.getTipo());
 		return p;
 	}
+
+	@Override
+	public ArrayList<ArrayList<String>> listasConRespuestas(ArrayList<ArrayList<String>> arrayList, Pregunta p) {
+		if (!(p.getTipo().equals("vf"))) {
+			ArrayList<String> respuestas = new ArrayList<>();
+			for (String s : p.getRespuestas().split("\\|")) respuestas.add(s);
+			Collections.shuffle(respuestas);
+			arrayList.add((ArrayList<String>)respuestas);
+		} else
+			arrayList.add(null);
+		return arrayList;
+	}
 }

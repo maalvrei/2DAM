@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,4 +27,5 @@ public interface IPreguntaService {
 	Pregunta preguntaSCDesdeObjeto(ModificacionPreguntaSC objeto);
 	ModificacionPreguntaMC objetoParaModificarPreguntaMC(Pregunta pregunta);
 	Pregunta preguntaMCDesdeObjeto(ModificacionPreguntaMC objeto);
+	ArrayList<ArrayList<String>> listasConRespuestas (ArrayList<ArrayList<String>> arrayList, Pregunta p);
 }

@@ -18,6 +18,7 @@
 	<div th:each="pregunta: ${preguntas}">
 		<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
+			<input type="hidden" th:name="soluciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
 				<p><input type="radio"  th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="verdadero" value="Verdadero"></input>
 					<label for="verdadero">Verdadero</label>
 				</p>
@@ -27,6 +28,7 @@
 		</div>
 		<div th:if='${pregunta.tipo.equals("sc")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
+			<input type="hidden" th:name="soluciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
 				<p><input type="radio" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[__${preguntas.indexOf(pregunta)}__]}" id="respuesta1" th:value="${pregunta.respuestas}">
 					<label for="respuesta1" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][0]}"></label>
 				</p>
@@ -42,6 +44,7 @@
 		</div>
 		<div th:if='${pregunta.tipo.equals("mc")}' class="cajaFormulario">
 			<h1 th:text="${pregunta.enunciado}"></h1>
+			<input type="hidden" th:name="soluciones[__${preguntas.indexOf(pregunta)}__].idPregunta" th:value="${pregunta.id}">
 				<p><input type="checkbox" th:field="*{soluciones[__${preguntas.indexOf(pregunta)}__].opcionesSeleccionadas[0]}" id="respuesta1" th:value="${pregunta.respuestas}">
 					<label for="respuesta1" th:text="${respuestas[__${preguntas.indexOf(pregunta)}__][0]}"></label>
 				</p>
