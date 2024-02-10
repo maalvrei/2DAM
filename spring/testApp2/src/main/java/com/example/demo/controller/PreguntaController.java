@@ -124,43 +124,26 @@ public class PreguntaController {
 		SolucionesTest datos = new SolucionesTest();
 		ArrayList<ArrayList<String>> arrayListConRespuestasDeCadaPregunta = new ArrayList<>();
 		for (Pregunta p : listaCon10Preguntas) {
-			datos.soluciones.add(new Solucion(p.getId()));
-			preguntaService.listasConRespuestas(arrayListConRespuestasDeCadaPregunta, p);
+			datos.soluciones.add(new Solucion());
+			arrayListConRespuestasDeCadaPregunta.add(preguntaService.listasConRespuestas(p));
 		}
 		model.addAttribute("respuestas", arrayListConRespuestasDeCadaPregunta);
 		model.addAttribute("datos", datos);
 		model.addAttribute("preguntas", listaCon10Preguntas);
 		return "test";
 	}
-	
+
 	@PostMapping("/test")
-	public String compruebaTest(Model model, SolucionesTest datos){
-		ArrayList<Pregunta> preguntasRespondidasCorrectamente = new ArrayList<>();
-		ArrayList<Pregunta> preguntasRespondidasIncorrectamente = new ArrayList<>();
-		datos.soluciones.stream().forEach(solucion-> {
-			Pregunta p = preguntaService.findById(solucion.getIdPregunta()).orElse(null);
-			if (p.getTipo().equals("mc")) {
-				if (solucion.getOpcionesSeleccionadas().size() != p.getRespuestaCorrecta().split("\\|").length)
-					preguntasRespondidasIncorrectamente.add(p);
-				else {
-					ArrayList<String> respuestasCorrectasDeLaPregunta = new ArrayList<>(Arrays.asList(p.getRespuestaCorrecta().split("\\|")));
-					if (solucion.getOpcionesSeleccionadas().containsAll(respuestasCorrectasDeLaPregunta))
-						preguntasRespondidasCorrectamente.add(p);
-					else
-						preguntasRespondidasIncorrectamente.add(p);
-				}
-			} else {
-				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
-				if (solucion.getOpcionesSeleccionadas().contains(respuestaCorrectaDeLaPregunta))
-					preguntasRespondidasCorrectamente.add(p);
-				else
-					preguntasRespondidasIncorrectamente.add(p);
-			}
+	public String compruebaTest(Model model, SolucionesTest datos) {
+		ArrayList<Pregunta> preguntasRespondidasCorrectamente = preguntaService.preguntasAcertadas(datos);
+		ArrayList<Pregunta> preguntasRespondidasIncorrectamente = preguntaService.preguntasFalladas(datos);
+		ArrayList<Solucion> solucionesRespondidasCorrectamente = new ArrayList<>();
+		ArrayList<Solucion> solucionesRespondidasIncorrectamente = new ArrayList<>();
+		datos.soluciones.stream().forEach(s-> {
+			Pregunta p = preguntaService.findById(s.getIdPregunta()).orElse(null);
+			if (preguntasRespondidasCorrectamente.contains(p)) solucionesRespondidasCorrectamente.add(s);
+			else solucionesRespondidasIncorrectamente.add(s);
 		});
-		System.out.println("Preguntas acertadas");
-		for (Pregunta p : preguntasRespondidasCorrectamente) System.out.println(p.getEnunciado());
-		System.out.println("Preguntas falladas");
-		for (Pregunta p : preguntasRespondidasIncorrectamente) System.out.println(p.getEnunciado());
 		return "resultado_test";
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.example.demo.model.ModificacionPreguntaMC;
 import com.example.demo.model.ModificacionPreguntaSC;
+import com.example.demo.model.SolucionesTest;
 import com.example.demo.model.entity.Pregunta;
 
 public interface IPreguntaService {
@@ -27,5 +28,7 @@ public interface IPreguntaService {
 	Pregunta preguntaSCDesdeObjeto(ModificacionPreguntaSC objeto);
 	ModificacionPreguntaMC objetoParaModificarPreguntaMC(Pregunta pregunta);
 	Pregunta preguntaMCDesdeObjeto(ModificacionPreguntaMC objeto);
-	ArrayList<ArrayList<String>> listasConRespuestas (ArrayList<ArrayList<String>> arrayList, Pregunta p);
+	ArrayList<String> listasConRespuestas (Pregunta p);
+	ArrayList<Pregunta> preguntasAcertadas (SolucionesTest datos);
+	ArrayList<Pregunta> preguntasFalladas (SolucionesTest datos);
 }
