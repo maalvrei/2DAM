@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th='http://thymeleaf.org'>
-
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title>Test</title>
 	<link th:href="@{/css/estilos_test.css}" rel="stylesheet">
 </head>
+<body>
 <header>
-	<h1>Examen</h1>
-	<nav>
+<nav>
 	<a th:href="@{/home}">Cancelar y volver al home</a>
 </nav>
+	<h1>Examen</h1>
 </header>
-
-<body>
+<main>
+<h2>El examen se compone de 10 preguntas en formato tipo test totalmente aleatorias. Las hay de 3 tipos:
+	verdadero o falso, con una sola opción correcta y con múltiples opciones correctas. ¡Suerte!</h2>
 <form th:action="@{/test}" th:object="${datos}" method="post">
 	<div th:each="pregunta: ${preguntas}">
 		<div th:if='${pregunta.tipo.equals("vf")}' class="cajaFormulario">
@@ -61,6 +62,7 @@
 	</div>
 	<input type="submit" value="Finalizar test">
 	</form>
+	</main>
 </body>
 
 </html>

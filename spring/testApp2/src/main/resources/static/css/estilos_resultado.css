@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 html {
 	font-family: 'Roboto', sans-serif;
-	background-color: #37319E;
+	background-color:#78B07D;
 }
 
 body {
@@ -40,15 +40,21 @@ a {
 	border-radius: 10px;
 	background-color: white !important;
 	font-weight: bold;
-	width:30%;
 	font-size:20px;
 	text-align: center;
+	
 }
 
 nav {
 	margin-top:20px;
 	display:flex;
-	justify-content: space-around;
+	flex-direction: row;
+	justify-content: space-between;
+	width:100%;
+}
+
+header {
+	width:20%;
 }
 
 .preguntaAcertada {

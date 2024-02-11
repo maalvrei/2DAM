@@ -31,4 +31,5 @@ public interface IPreguntaService {
 	ArrayList<String> listasConRespuestas (Pregunta p);
 	ArrayList<Pregunta> preguntasAcertadas (SolucionesTest datos);
 	ArrayList<Pregunta> preguntasFalladas (SolucionesTest datos);
+	List<Pregunta> listaFiltrada (String tipo, String tema);
 }

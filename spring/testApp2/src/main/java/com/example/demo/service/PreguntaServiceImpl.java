@@ -212,7 +212,9 @@ public class PreguntaServiceImpl implements IPreguntaService {
 			if (p.getTipo().equals("mc")) {
 				solucion.getOpcionesSeleccionadas().removeAll(Collections.singleton(null));
 				ArrayList<String> respuestasCorrectasDeLaPregunta = new ArrayList<>(Arrays.asList(p.getRespuestaCorrecta().split("\\|")));
-				if (solucion.getOpcionesSeleccionadas().containsAll(respuestasCorrectasDeLaPregunta)) listaAcertadas.add(p);
+				System.out.println(respuestasCorrectasDeLaPregunta);
+				System.out.println(solucion.getOpcionesSeleccionadas());
+				if (respuestasCorrectasDeLaPregunta.containsAll(solucion.getOpcionesSeleccionadas()) && !solucion.getOpcionesSeleccionadas().isEmpty()) listaAcertadas.add(p);
 			} else {
 				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
 				if (solucion.getOpcionesSeleccionadas().contains(respuestaCorrectaDeLaPregunta)) listaAcertadas.add(p);
@@ -224,14 +226,15 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	@Override
 	public ArrayList<Pregunta> preguntasFalladas(SolucionesTest datos) {
 		ArrayList<Pregunta> listaFalladas = new ArrayList<>();
-		datos.soluciones.stream().filter(s -> s.getOpcionesSeleccionadas()!=null).forEach(solucion -> {
+		datos.soluciones.stream().filter(s -> s.getOpcionesSeleccionadas()!=null && (!s.getOpcionesSeleccionadas().isEmpty())).forEach(solucion -> {
 			Pregunta p = preguntaRepository.findById(solucion.getIdPregunta()).orElse(null);
 			if (p.getTipo().equals("mc")) {
 				solucion.getOpcionesSeleccionadas().removeAll(Collections.singleton(null));
 				if (solucion.getOpcionesSeleccionadas().size() != p.getRespuestaCorrecta().split("\\|").length) listaFalladas.add(p);
 				else {
 					ArrayList<String> respuestasCorrectasDeLaPregunta = new ArrayList<>(Arrays.asList(p.getRespuestaCorrecta().split("\\|")));
-					if (!(solucion.getOpcionesSeleccionadas().containsAll(respuestasCorrectasDeLaPregunta))) listaFalladas.add(p);
+					if (!respuestasCorrectasDeLaPregunta.containsAll(solucion.getOpcionesSeleccionadas())) listaFalladas.add(p);
+					
 				}
 			} else {
 				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
@@ -239,5 +242,18 @@ public class PreguntaServiceImpl implements IPreguntaService {
 			}
 		});
 		return listaFalladas;
+	}
+
+	@Override
+	public List<Pregunta> listaFiltrada(String tipo, String tema) {
+		List<Pregunta> listaFiltrada = (ArrayList<Pregunta>)preguntaRepository.findAll();
+		if (tipo.equals("todos") && !tema.equals("todos"))
+			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTema().equals(tema)).toList();
+		else if (!tipo.equals("todos") && tema.equals("todos"))
+			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTipo().equals(tipo)).toList();
+		else if ((!tipo.equals("todos") && !tema.equals("todos")))
+			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTipo().equals(tipo)).filter(p-> p.getTema().equals(tema)).toList();
+		for (Pregunta p : listaFiltrada) System.out.println(p.getEnunciado());
+		return listaFiltrada;
 	}
 }

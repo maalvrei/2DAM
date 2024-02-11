@@ -38,8 +38,8 @@ public class PreguntaController {
 	@Autowired
 	private IPreguntaService preguntaService;
 
-	@Autowired
-	private InsultoService insultoService;
+	/*@Autowired
+	private InsultoService insultoService;*/
 
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -51,6 +51,12 @@ public class PreguntaController {
 		Collections.shuffle(posicionesImagenes);
 		model.addAttribute("posiciones", posicionesImagenes);
 		return "home.html";
+	}
+	
+	@PostMapping("/lista")
+	public String listaFiltrada(Model model, @RequestParam ("tipo") String tipo, @RequestParam ("tema") String tema) {
+		model.addAttribute("preguntas",preguntaService.listaFiltrada(tipo, tema));
+		return "lista";
 	}
 
 	@GetMapping("/crearPregunta")

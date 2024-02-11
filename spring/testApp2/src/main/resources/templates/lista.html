@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th='http://thymeleaf.org'>
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Listado</title>
     <link th:href="@{/css/estilos_lista.css}" rel="stylesheet">
 </head>
@@ -14,19 +14,23 @@
  </header>
     <main>
     	<section>
-    		<form id="filtros" th:action="@{/home/listar}" method="post">
+    		<form id="filtros" th:action="@{/lista}" method="post">
     			<div><span>Filtrar por tipo:</span>
     			<select id="tipo" name="tipo">
+    				<option value="todos" >Todos</option>
         			<option value="sc">Single choice</option>
         			<option value="vf" >Verdadero o falso</option>
+        			<option value="mc" >Multiple choice</option>
     			</select>
     			</div>
-    			<!--  <div><span>Filtrar por tema:</span>
+    			<div><span>Filtrar por tema:</span>
     			<select id="tema" name="tema">
+    				<option value="todos" >Todos</option>
         			<option value="Odoo">Odoo</option>
-        			<option value="Otros" >Otros</option>
+        			<option value="Informática" >Informática</option>
+        			<option value="IA" >Inteligencia artifical</option>
     			</select>
-    			</div>-->
+    			</div>
     			<input type="submit" value="Aplicar filtros">
     		</form>
     	</section>

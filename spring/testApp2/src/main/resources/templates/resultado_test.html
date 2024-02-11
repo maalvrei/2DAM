@@ -11,12 +11,11 @@
 		<a th:href="@{/home}">Volver al home</a>
 		<a th:href="@{/test}">Hacer otro test</a>
 	</nav>
-	<h1>HAS ACERTADO <span th:text="${preguntasBien.size}"></span>/10 PREGUNTAS </h1>
 	
 </header>
 <main>
-
-
+<h1 th:if="${!preguntasBien.isEmpty && !preguntasMal.isEmpty}">HAS ACERTADO <span th:text="${preguntasBien.size}"></span>/10 PREGUNTAS </h1>
+<h1 th:if="${preguntasBien.isEmpty && preguntasMal.isEmpty}">NO HAS RESPONDIDO A NINGUNA PREGUNTA</h1>
 <div th:each="pregunta: ${preguntasBien}" >
 
 <div th:if="${!(pregunta.tipo.equals('mc'))}" class="preguntaAcertada">
