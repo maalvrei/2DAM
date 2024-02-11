@@ -142,8 +142,14 @@ public class PreguntaController {
 		datos.soluciones.stream().forEach(s-> {
 			Pregunta p = preguntaService.findById(s.getIdPregunta()).orElse(null);
 			if (preguntasRespondidasCorrectamente.contains(p)) solucionesRespondidasCorrectamente.add(s);
-			else solucionesRespondidasIncorrectamente.add(s);
+			if (preguntasRespondidasIncorrectamente.contains(p)) solucionesRespondidasIncorrectamente.add(s);
 		});
+		System.out.println(preguntasRespondidasCorrectamente.size());
+		System.out.println(solucionesRespondidasCorrectamente.size());
+		model.addAttribute("preguntasBien",preguntasRespondidasCorrectamente);
+		model.addAttribute("preguntasMal",preguntasRespondidasIncorrectamente);
+		model.addAttribute("solucionesBien", solucionesRespondidasCorrectamente);
+		model.addAttribute("solucionesMal",solucionesRespondidasIncorrectamente);
 		return "resultado_test";
 	}
 

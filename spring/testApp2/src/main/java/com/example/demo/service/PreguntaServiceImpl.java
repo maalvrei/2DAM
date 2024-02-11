@@ -207,7 +207,7 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	@Override
 	public ArrayList<Pregunta> preguntasAcertadas(SolucionesTest datos) {
 		ArrayList<Pregunta> listaAcertadas = new ArrayList<>();
-		datos.soluciones.stream().forEach(solucion -> {
+		datos.soluciones.stream().filter(s -> s.getOpcionesSeleccionadas()!=null).forEach(solucion -> {
 			Pregunta p = preguntaRepository.findById(solucion.getIdPregunta()).orElse(null);
 			if (p.getTipo().equals("mc")) {
 				solucion.getOpcionesSeleccionadas().removeAll(Collections.singleton(null));
@@ -217,14 +217,14 @@ public class PreguntaServiceImpl implements IPreguntaService {
 				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
 				if (solucion.getOpcionesSeleccionadas().contains(respuestaCorrectaDeLaPregunta)) listaAcertadas.add(p);
 			}
-		});
+		});;
 		return listaAcertadas;
 	}
 
 	@Override
 	public ArrayList<Pregunta> preguntasFalladas(SolucionesTest datos) {
 		ArrayList<Pregunta> listaFalladas = new ArrayList<>();
-		datos.soluciones.stream().forEach(solucion -> {
+		datos.soluciones.stream().filter(s -> s.getOpcionesSeleccionadas()!=null).forEach(solucion -> {
 			Pregunta p = preguntaRepository.findById(solucion.getIdPregunta()).orElse(null);
 			if (p.getTipo().equals("mc")) {
 				solucion.getOpcionesSeleccionadas().removeAll(Collections.singleton(null));

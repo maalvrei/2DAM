@@ -6,28 +6,62 @@
 <link th:href="@{/css/estilos_resultado.css}" rel="stylesheet">
 </head>
 <body>
-<!--<header>
+<header>
 	<nav>
 		<a th:href="@{/home}">Volver al home</a>
-		<a th:href="@{/home/test}">Hacer otro test</a>
+		<a th:href="@{/test}">Hacer otro test</a>
 	</nav>
-	<h1>HAS ACERTADO <span th:text="${acertadas}"></span>/10 PREGUNTAS </h1>
+	<h1>HAS ACERTADO <span th:text="${preguntasBien.size}"></span>/10 PREGUNTAS </h1>
 	
 </header>
 <main>
-<h2 th:if="${preguntasFalladas.size != 0}">Preguntas falladas</h2>
-<div  th:each="pregunta: ${preguntasFalladas}" class="preguntaFallada">
-	<p th:text="${pregunta.enunciado}" class="enunciado"></p>
-	<p>Respuesta correcta: <span th:text="${pregunta.respuestaCorrecta}"></span></p>
-	<p>Respuesta seleccionada: <span th:text="${contestacionesFalladas[__${preguntasFalladas.indexOf(pregunta)}__].opcionSeleccionada}"></span></p>
+
+
+<div th:each="pregunta: ${preguntasBien}" >
+
+<div th:if="${!(pregunta.tipo.equals('mc'))}" class="preguntaAcertada">
+	<p th:text="${pregunta.enunciado}"></p>
+	<p>Opcion seleccionada: <span th:text="${solucionesBien[__${preguntasBien.indexOf(pregunta)}__].opcionesSeleccionadas[0]}"></span></p>
+	<p>Opcion correcta: <span th:text="${pregunta.respuestaCorrecta}"></span></p>
 </div>
-<h2 th:if="${preguntasAcertadas.size != 0}">Preguntas acertadas</h2>
-<div th:each="pregunta: ${preguntasAcertadas}" class="preguntaAcertada">
-	<p th:text="${pregunta.enunciado}" class="enunciado"></p>
-	<p>Respuesta correcta: <span th:text="${pregunta.respuestaCorrecta}"></span></p>
-	<p>Respuesta seleccionada: <span th:text="${contestacionesAcertadas[__${preguntasAcertadas.indexOf(pregunta)}__].opcionSeleccionada}"></span></p>
+
+<div th:if="${pregunta.tipo.equals('mc')}" class="preguntaAcertada">
+	<p th:text="${pregunta.enunciado}"></p>
+	<p>Opciones seleccionadas:</p>
+	<div th:each="opcion : ${solucionesBien[__${preguntasBien.indexOf(pregunta)}__].opcionesSeleccionadas}">
+	<p th:text="${opcion}"></p>
+	</div>
+	
+	<p>Opciones correctas:</p>
+	<div th:each="respuesta : ${#strings.arraySplit(pregunta.respuestaCorrecta, '|')}">
+	<p th:text="${respuesta}"></p>
+	</div>
 </div>
-</main>  -->
+</div>
+
+<div th:each="pregunta: ${preguntasMal}">
+<div th:if="${!(pregunta.tipo.equals('mc'))}" class="preguntaFallada">
+	<p th:text="${pregunta.enunciado}"></p>
+	<p>Opcion seleccionada: <span th:text="${solucionesMal[__${preguntasMal.indexOf(pregunta)}__].opcionesSeleccionadas[0]}"></span></p>
+	<p>Opcion correcta: <span th:text="${pregunta.respuestaCorrecta}"></span></p>
+</div>
+
+<div th:if="${pregunta.tipo.equals('mc')}" class="preguntaFallada">
+	<p th:text="${pregunta.enunciado}"></p>
+	<p>Opciones seleccionadas:</p>
+	<div th:each="opcion : ${solucionesMal[__${preguntasMal.indexOf(pregunta)}__].opcionesSeleccionadas}">
+	<p th:text="${opcion}"></p>
+	</div>
+	
+	<p>Opciones correctas:</p>
+	<div th:each="respuesta : ${#strings.arraySplit(pregunta.respuestaCorrecta, '|')}">
+	<p th:text="${respuesta}"></p>
+	</div>
+</div>
+</div>
+
+</main>
+
 
 </body>
 </html>
