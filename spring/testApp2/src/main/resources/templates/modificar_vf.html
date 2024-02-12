@@ -32,14 +32,23 @@
 							<option value="Falso">Falso</option>
 					</select></td>
 				</tr>
-
+				
+				<tr>
+					<td>Temática</td>
+					<td><select id="tema" name="tema" th:field="*{tema}">
+							<option value="Odoo">Odoo</option>
+							<option value="IA">Inteligencia artificial</option>
+							<option value="Informática">Informática</option>
+					</select></td>
+				</tr>
+				
 				<tr>
 					<td></td>
 					<td><input type="submit" value="Actualizar pregunta" /></td>
 				</tr>
 			</table>
 			<input type="hidden" th:field="*{id}" /> <input type="hidden"
-				th:field="*{tipo}" /> <input type="hidden" th:field="*{tema}" />
+				th:field="*{tipo}" />
 		</form>
 	</main>
 </body>

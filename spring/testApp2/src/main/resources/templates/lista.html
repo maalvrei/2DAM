@@ -49,7 +49,7 @@
                 <td th:text="${pregunta.tema}"></td>
                 <td th:text="${pregunta.enunciado}"></td>
                 <td><a th:href="@{/modificar/} + ${pregunta.id}">Modificar</a></td>
-                <td><a class="botonEliminar" th:href="@{/modificar/} + ${pregunta.id}">Eliminar</a></td>
+                <td><a class="botonEliminar" th:href="@{/eliminar/} + ${pregunta.id}">Eliminar</a></td>
             </tr>
         </table>
     </main>

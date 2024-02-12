@@ -15,7 +15,7 @@
 	<main>
 	<div>
 		<h2>Crear pregunta verdadero o falso:</h2>
-		<form th:action="@{/vfCreada}" th:object="${pregunta}"
+		<form id="formularioVF" th:action="@{/vfCreada}" th:object="${pregunta}"
 			method="post">
 			<table>
 				<tr>
@@ -167,6 +167,8 @@
 	</main>
 	<script th:src="@{/js/script.js}">
     </script>
+
+
 	
 </body>
 </html>

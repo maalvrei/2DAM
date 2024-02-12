@@ -53,10 +53,23 @@ public class PreguntaController {
 		return "home.html";
 	}
 	
+	@GetMapping("/lista")
+	public String lista(Model model) {
+		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();
+		model.addAttribute("preguntas", preguntas);
+		return "lista";
+	}
+	
 	@PostMapping("/lista")
 	public String listaFiltrada(Model model, @RequestParam ("tipo") String tipo, @RequestParam ("tema") String tema) {
 		model.addAttribute("preguntas",preguntaService.listaFiltrada(tipo, tema));
 		return "lista";
+	}
+	
+	@GetMapping("/eliminar/{id}")
+	public String eliminarPregunta(@PathVariable Long id) {
+	    preguntaService.delete(id);
+	    return "redirect:/lista";
 	}
 
 	@GetMapping("/crearPregunta")
@@ -117,12 +130,6 @@ public class PreguntaController {
 		return "redirect:lista";
 	}
 
-	@GetMapping("/lista")
-	public String lista(Model model) {
-		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();
-		model.addAttribute("preguntas", preguntas);
-		return "lista";
-	}
 
 	@GetMapping("/test")
 	public String test(Model model) {
