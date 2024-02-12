@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>Enunciado</td>
-					<td><input type="text" th:field="*{enunciado}" /></td>
+					<td><input type="text" id="enunciadoVF" th:field="*{enunciado}" /></td>
 				</tr>
 				<tr>
 					<td>Respuesta correcta</td>
@@ -53,7 +53,7 @@
 <div>
 		<h2>Crear pregunta de elección única:</h2>
 		<form th:action="@{/scCreada}" th:object="${pregunta}"
-			method="post">
+			method="post" id="formularioSC">
 			<table>
 				<tr>
 					<th>Campo</th>
@@ -61,7 +61,7 @@
 				</tr>
 				<tr>
 					<td>Enunciado</td>
-					<td><input type="text" th:field="*{enunciado}" /></td>
+					<td><input type="text" id="enunciadoSC" th:field="*{enunciado}" /></td>
 				</tr>
 				<tr>
 				<tr>
@@ -83,7 +83,7 @@
 
 				<tr>
 					<td>Respuesta correcta</td>
-					<td><input type="text" th:field="*{respuestaCorrecta}" /></td>
+					<td><input type="text" id="respuestaCorrectaSC" th:field="*{respuestaCorrecta}" /></td>
 				</tr>
 				<tr>
 					<td>Temática</td>
