@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Definición de la vista de creación de Tarea -->
+        <record id="view_tarea_form" model="ir.ui.view">
+            <field name="name">proyectos.tarea.form</field>
+            <field name="model">proyectos.tarea</field>
+            <field name="arch" type="xml">
+                <form string="Crear Tarea">
+                    <sheet>
+                        <!-- Pestaña para los datos de la tarea -->
+                        <notebook>
+                            <page string="Datos de la Tarea">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="priority"/>
+                                    <field name="state"/>
+                                    <field name="proyecto_id"/>
+                                    <field name="assigned_user_ids"/>
+                                    <field name="estimated_hours"/>
+                                    <field name="spent_hours"/>
+                                    <field name="comments"/>
+                                    <field name="registros"></field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

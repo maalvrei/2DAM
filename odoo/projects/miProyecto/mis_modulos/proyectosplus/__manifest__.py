@@ -1,16 +1,13 @@
 {
-    'name': 'Proyectos',
+    'name': 'ProyectosPlus',
     'version': '1.0',
-    'depends': ['base', 'proyectosplus'],
+    'depends': ['base'],
     'author': 'Migue',
-    'category': 'CatPrueba',
+    'category': 'CatPrueba2',
     'description': 'Descripción larga del módulo 00',
     'summary': 'Descripción corta del módulo 00',
     'data': [
         'views/menu.xml',
-        'views/notebook_tarea.xml',
-        'views/kanbanTarea.xml',
-        'views/notebook_proyecto.xml',
     ],
     'demo': [
         # Datos de demostración (opcional)

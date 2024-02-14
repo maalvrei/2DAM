@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Definición de Acción -->
+    <record id="action_open_registro" model="ir.actions.act_window">
+        <field name="name">Registro</field>
+        <field name="res_model">proyectosplus.registro_tiempo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_comentario" model="ir.actions.act_window">
+        <field name="name">Comentario</field>
+        <field name="res_model">proyectosplus.comentario</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menú Principal (Nivel 1) -->
+    <menuitem id="menu_principal_id" name="Registros y comentarios"/>
+
+    <!-- Submenú (Nivel 3) -->
+    <menuitem id="submenu_nivel_2_registro" name="Registro" parent="menu_principal_id"
+              action="action_open_registro"/>
+    <menuitem id="submenu_nivel_2_comentario" name="Comentario" parent="menu_principal_id"
+            action="action_open_comentario"/>
+</odoo>
