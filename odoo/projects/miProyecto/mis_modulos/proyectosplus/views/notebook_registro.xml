@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Definición de la vista de creación de Proyecto -->
+        <record id="view_comentario_form" model="ir.ui.view">
+            <field name="name">proyectosplus.registro_tiempo.form</field>
+            <field name="model">proyectosplus.registro_tiempo</field>
+            <field name="arch" type="xml">
+                <form string="Crear comentario">
+                    <sheet>
+                        <notebook>
+                            <page string="Datos del registro">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="user_id"/>
+                                    <field name="date"/>
+                                    <field name="hours" widget="float_time"/>
+                                    <field name="description"></field>
+                                    <field name="task_id" widget="many2one"></field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

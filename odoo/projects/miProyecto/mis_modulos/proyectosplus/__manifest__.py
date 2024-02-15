@@ -8,6 +8,8 @@
     'summary': 'Descripción corta del módulo 00',
     'data': [
         'views/menu.xml',
+        'views/notebook_comentario.xml',
+        'views/notebook_registro.xml'
     ],
     'demo': [
         # Datos de demostración (opcional)
