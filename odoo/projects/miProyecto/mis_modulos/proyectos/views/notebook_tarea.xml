@@ -12,6 +12,7 @@
                         <notebook>
                             <page string="Datos de la Tarea">
                                 <group>
+                                    <field name="state" widget="statusbar"/>
                                     <field name="name"/>
                                     <field name="description"/>
                                     <field name="start_date"/>
@@ -19,8 +20,8 @@
                                     <field name="priority"/>
                                     <field name="state"/>
                                     <field name="proyecto_id"/>
-                                    <field name="assigned_user_ids"/>
-                                    <field name="estimated_hours"/>
+                                    <field name="assigned_user_ids" widget="float_time"/>
+                                    <field name="estimated_hours" widget="float_time"/>
                                     <field name="spent_hours"/>
                                     <field name="comments"/>
                                     <field name="registros"></field>

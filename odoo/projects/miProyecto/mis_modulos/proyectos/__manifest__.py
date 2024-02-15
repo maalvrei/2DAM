@@ -9,8 +9,7 @@
     'data': [
         'views/menu.xml',
         'views/notebook_tarea.xml',
-        'views/kanbanTarea.xml',
-        'views/notebook_proyecto.xml',
+        'views/notebook_proyecto.xml'
     ],
     'demo': [
         # Datos de demostración (opcional)

@@ -19,7 +19,6 @@ class Proyecto(models.Model):
         ('T', 'Terminado'), # Mayores de 13 
     ],string='Estado del proyecto')
     user_ids = fields.Many2many(comodel_name='res.users', string="Usuarios")
-    #task_ids = fields.One2many(comodel_name='proyectos.tarea',string="Tareas")
     budget = fields.Float(string='Presupuesto')
     priority = fields.Selection(selection=[
         ('A','Alta'),

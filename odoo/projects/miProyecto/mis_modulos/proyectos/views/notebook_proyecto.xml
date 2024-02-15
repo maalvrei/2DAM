@@ -12,6 +12,8 @@
                         <notebook>
                             <page string="Datos del Proyecto">
                                 <group>
+                                
+                                    <field name="state" widget="statusbar"/>
                                     <field name="name"/>
                                     <field name="description"/>
                                     <field name="start_date"/>
@@ -31,7 +33,7 @@
                             <!-- Pestaña para los usuarios del proyecto -->
                             <page string="Usuarios del Proyecto">
                                 <group>
-                                    <field name="user_ids"/>
+                                    <field name="user_ids" wigdget="many2many_tags"/>
                                 </group>
                             </page>
                         </notebook>
