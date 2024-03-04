@@ -14,8 +14,7 @@ public class InsultoService {
     @Autowired
     private RestTemplate restTemplate;
     
-    @Value("${api.url}")
-    private String apiUrl;
+    private String apiUrl = "https://evilinsult.com/generate_insult.php?lang=en&type=json";
 
     public Insulto getInsulto() {
         return restTemplate.getForObject(apiUrl, Insulto.class);
