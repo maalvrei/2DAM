@@ -29,12 +29,12 @@
 					<td th:text="${pregunta.tipo}"></td>
 					<td th:text="${pregunta.enunciado}"></td>
 					<td>
-							<a class="btn btn-primary btn-xs" th:href="@{/home/formulario/} + ${pregunta.id}">
+							<a class="btn btn-primary btn-xs" th:href="@{/modificar/} + ${pregunta.id}">
 									Editar
 							</a>
 					</td>
 					<td>
-							<a class="btn btn-danger btn-xs" th:href="@{/home/eliminar/} + ${pregunta.id}">
+							<a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${pregunta.id}">
 									Eliminar
 							</a>
 					</td>

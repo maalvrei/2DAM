@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -255,5 +256,11 @@ public class PreguntaServiceImpl implements IPreguntaService {
 			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTipo().equals(tipo)).filter(p-> p.getTema().equals(tema)).toList();
 		for (Pregunta p : listaFiltrada) System.out.println(p.getEnunciado());
 		return listaFiltrada;
+	}
+
+	@Override
+	@Cacheable("InformacionCache")
+	public String informacion() {
+		return "\"Mis Preguntas\" es el trabajo que da fin a la asignatura de Acceso a Datos de 2º de Desarrollo de Aplicaciones Multiplataforma, desarrollada por Miguel Ángel Álvarez Reina. No es perfecta y puede mejorarse mucho, pero está hecha dentro de las posibilidades de alguien que, además de estudiar, tiene que currar para mantenerse en este mundo. Cualquier sugerencia de mejora o comentario es siempre bien recibido. En el correo miguemorisco@gmail.com o al número de teléfono +34 667014217 encontrarás a su creador. ¡Gracias!";
 	}
 }

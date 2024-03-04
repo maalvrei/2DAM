@@ -54,6 +54,13 @@ public class PreguntaController {
 		return "home.html";
 	}
 	
+	@GetMapping("/informacion") 
+		public String informacion(Model model) {
+		model.addAttribute("informacion", preguntaService.informacion());
+			return "informacion";
+		}
+	
+	
 	@GetMapping("/lista")
 	public String lista(Model model) {
 		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();

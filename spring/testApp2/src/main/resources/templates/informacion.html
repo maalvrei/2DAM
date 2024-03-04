@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="UTF-8">
+<title>Información</title>
+<link th:href="@{/css/estilos_informacion.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+<nav><a class="botonNav" th:href="@{/home}">Volver al home</a></nav>
+</header>
+<div id="cajaInfo"><p th:text="${informacion}"></p></div>
+
+</body>
+</html>
