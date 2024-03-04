@@ -38,8 +38,8 @@ public class PreguntaController {
 	@Autowired
 	private IPreguntaService preguntaService;
 
-	/*@Autowired
-	private InsultoService insultoService;*/
+	@Autowired
+	private InsultoService insultoService;
 
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -50,6 +50,7 @@ public class PreguntaController {
 			posicionesImagenes.add(i);
 		Collections.shuffle(posicionesImagenes);
 		model.addAttribute("posiciones", posicionesImagenes);
+		model.addAttribute("insulto",insultoService.getInsulto().getInsult());
 		return "home.html";
 	}
 	
@@ -58,6 +59,17 @@ public class PreguntaController {
 		List<Pregunta> preguntas = (ArrayList<Pregunta>) preguntaService.findAll();
 		model.addAttribute("preguntas", preguntas);
 		return "lista";
+	}
+	
+	@GetMapping("/listar-paginado")
+	public String listaPaginada(@RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageRequest = PageRequest.of(page, 5);
+		Page<Pregunta> preguntas = preguntaService.listarPaginado(pageRequest);
+		PageRender<Pregunta> pageRender = new PageRender<>("/listar-paginado", preguntas); 
+		model.addAttribute("titulo", "Listado de preguntas paginado");
+		model.addAttribute("preguntas",preguntas);
+		model.addAttribute("page", pageRender);
+		return "lista_paginada";
 	}
 	
 	@PostMapping("/lista")

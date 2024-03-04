@@ -214,7 +214,7 @@ public class PreguntaServiceImpl implements IPreguntaService {
 				ArrayList<String> respuestasCorrectasDeLaPregunta = new ArrayList<>(Arrays.asList(p.getRespuestaCorrecta().split("\\|")));
 				System.out.println(respuestasCorrectasDeLaPregunta);
 				System.out.println(solucion.getOpcionesSeleccionadas());
-				if (respuestasCorrectasDeLaPregunta.containsAll(solucion.getOpcionesSeleccionadas()) && !solucion.getOpcionesSeleccionadas().isEmpty()) listaAcertadas.add(p);
+				if (respuestasCorrectasDeLaPregunta.size()==solucion.getOpcionesSeleccionadas().size() && respuestasCorrectasDeLaPregunta.containsAll(solucion.getOpcionesSeleccionadas()) && !solucion.getOpcionesSeleccionadas().isEmpty()) listaAcertadas.add(p);
 			} else {
 				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
 				if (solucion.getOpcionesSeleccionadas().contains(respuestaCorrectaDeLaPregunta)) listaAcertadas.add(p);

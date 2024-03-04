@@ -14,6 +14,7 @@
 		<nav>
 			<a th:href="@{/lista}">Ver lista de preguntas</a>
 			<a th:href="@{/test}">Comenzar test</a>
+			<a th:href="@{/listar-paginado}">Ver lista paginada</a>
 		</nav>
 	</header>
 
@@ -35,6 +36,8 @@
 			<figcaption><a href="https://corenetworkssevilla.es/">Información sobre Core Networks</a></figcaption>
 		</figure>
 	</section>
+	
+	<p th:text="${insulto}" id="insulto"></p>
 </body>
 
 </html>
