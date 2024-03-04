@@ -103,7 +103,7 @@
 		</div>
 		<div>
 		<h2>Crear pregunta de opción múltiple</h2>
-		<form th:action="@{/mcCreada}" th:object="${pregunta}"
+		<form th:action="@{/mcCreada}" id="formularioMC" th:object="${pregunta}"
 			method="post">
 			<table>
 				<tr>
@@ -112,7 +112,7 @@
 				</tr>
 				<tr>
 					<td>Enunciado</td>
-					<td><input type="text" th:field="*{enunciado}" /></td>
+					<td><input type="text" id="enunciadoMC" th:field="*{enunciado}" /></td>
 				</tr>
 				<tr>
 				<tr>
@@ -161,11 +161,11 @@
 					<td><input type="submit" value="Guardar pregunta" /></td>
 				</tr>
 			</table>
-			<input type="hidden" th:name="tipo" value="sc">
+			<input type="hidden" th:name="tipo" value="mc">
 		</form>
 		</div>
 	</main>
-	<script th:src="@{/js/script.js}">
+	<script th:src="@{/js/scriptValidaCreacion.js}">
     </script>
 
 
