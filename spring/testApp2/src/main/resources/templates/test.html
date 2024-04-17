@@ -13,7 +13,7 @@
 	<h1>Examen</h1>
 </header>
 <main>
-<h2>El examen se compone de 10 preguntas en formato tipo test totalmente aleatorias. Las hay de 3 tipos:
+<h2><span th:text="${nombre}"></span>, el examen se compone de 10 preguntas en formato tipo test totalmente aleatorias. Las hay de 3 tipos:
 	verdadero o falso, con una sola opción correcta y con múltiples opciones correctas. ¡Suerte!</h2>
 <form th:action="@{/test}" th:object="${datos}" method="post">
 	<div th:each="pregunta: ${preguntas}">

@@ -27,6 +27,9 @@ import com.example.demo.model.ModificacionPreguntaSC;
 import com.example.demo.service.IPreguntaService;
 import com.example.demo.service.InsultoService;
 import com.example.demo.util.paginator.PageRender;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Pageable;
 
 @Controller
@@ -55,11 +58,38 @@ public class PreguntaController {
 	}
 	
 	@GetMapping("/informacion") 
-		public String informacion(Model model) {
-		model.addAttribute("informacion", preguntaService.informacion());
-			return "informacion";
-		}
+	public String informacion(Model model) {
+	model.addAttribute("informacion", preguntaService.informacion());
+		return "informacion";
+	}
 	
+	@GetMapping("/iniciandoTest")
+	public String iniciandoTest(HttpSession session) {
+		return "iniciandoTest";
+	}
+	
+	@PostMapping("/iniciandoTest")
+	public String testIniciado(@RequestParam String nombre, HttpSession session, Model model) {
+		session.setAttribute("nombre", nombre);
+		return "redirect:test";
+	}
+	
+	@GetMapping("/test")
+	public String test(Model model, HttpSession session) {
+		String nombre = (String) session.getAttribute("nombre");
+		model.addAttribute("nombre",nombre);
+		ArrayList<Pregunta> listaCon10Preguntas = (ArrayList<Pregunta>) preguntaService.find10Aleatories();
+		SolucionesTest datos = new SolucionesTest();
+		ArrayList<ArrayList<String>> arrayListConRespuestasDeCadaPregunta = new ArrayList<>();
+		for (Pregunta p : listaCon10Preguntas) {
+			datos.soluciones.add(new Solucion());
+			arrayListConRespuestasDeCadaPregunta.add(preguntaService.listasConRespuestas(p));
+		}
+		model.addAttribute("respuestas", arrayListConRespuestasDeCadaPregunta);
+		model.addAttribute("datos", datos);
+		model.addAttribute("preguntas", listaCon10Preguntas);
+		return "test";
+	}
 	
 	@GetMapping("/lista")
 	public String lista(Model model) {
@@ -149,24 +179,9 @@ public class PreguntaController {
 		return "redirect:lista";
 	}
 
-
-	@GetMapping("/test")
-	public String test(Model model) {
-		ArrayList<Pregunta> listaCon10Preguntas = (ArrayList<Pregunta>) preguntaService.find10Aleatories();
-		SolucionesTest datos = new SolucionesTest();
-		ArrayList<ArrayList<String>> arrayListConRespuestasDeCadaPregunta = new ArrayList<>();
-		for (Pregunta p : listaCon10Preguntas) {
-			datos.soluciones.add(new Solucion());
-			arrayListConRespuestasDeCadaPregunta.add(preguntaService.listasConRespuestas(p));
-		}
-		model.addAttribute("respuestas", arrayListConRespuestasDeCadaPregunta);
-		model.addAttribute("datos", datos);
-		model.addAttribute("preguntas", listaCon10Preguntas);
-		return "test";
-	}
-
 	@PostMapping("/test")
-	public String compruebaTest(Model model, SolucionesTest datos) {
+	public String compruebaTest(Model model, SolucionesTest datos, HttpSession session) {
+		
 		ArrayList<Pregunta> preguntasRespondidasCorrectamente = preguntaService.preguntasAcertadas(datos);
 		ArrayList<Pregunta> preguntasRespondidasIncorrectamente = preguntaService.preguntasFalladas(datos);
 		ArrayList<Solucion> solucionesRespondidasCorrectamente = new ArrayList<>();
@@ -176,8 +191,8 @@ public class PreguntaController {
 			if (preguntasRespondidasCorrectamente.contains(p)) solucionesRespondidasCorrectamente.add(s);
 			if (preguntasRespondidasIncorrectamente.contains(p)) solucionesRespondidasIncorrectamente.add(s);
 		});
-		System.out.println(preguntasRespondidasCorrectamente.size());
-		System.out.println(solucionesRespondidasCorrectamente.size());
+		String nombre = (String) session.getAttribute("nombre");
+		model.addAttribute("nombre",nombre.toUpperCase());
 		model.addAttribute("preguntasBien",preguntasRespondidasCorrectamente);
 		model.addAttribute("preguntasMal",preguntasRespondidasIncorrectamente);
 		model.addAttribute("solucionesBien", solucionesRespondidasCorrectamente);

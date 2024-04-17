@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th='http://thymeleaf.org'>
+<head>
+<meta charset="ISO-8859-1">
+<title>Escribe tu nombre</title>
+<link th:href="@{/css/estilos_inicioTest.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+<nav>
+<a th:href="@{/home}">Cancelar y volver al home</a>
+</nav>
+</header>
+<h1>Primero, escribe tu nombre:</h1>
+<form th:action="@{/iniciandoTest}" method="post">
+<input type="text" name="nombre">
+<input type="submit" value="Comenzar test" />
+</form>
+</body>
+</html>

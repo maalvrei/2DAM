@@ -213,8 +213,6 @@ public class PreguntaServiceImpl implements IPreguntaService {
 			if (p.getTipo().equals("mc")) {
 				solucion.getOpcionesSeleccionadas().removeAll(Collections.singleton(null));
 				ArrayList<String> respuestasCorrectasDeLaPregunta = new ArrayList<>(Arrays.asList(p.getRespuestaCorrecta().split("\\|")));
-				System.out.println(respuestasCorrectasDeLaPregunta);
-				System.out.println(solucion.getOpcionesSeleccionadas());
 				if (respuestasCorrectasDeLaPregunta.size()==solucion.getOpcionesSeleccionadas().size() && respuestasCorrectasDeLaPregunta.containsAll(solucion.getOpcionesSeleccionadas()) && !solucion.getOpcionesSeleccionadas().isEmpty()) listaAcertadas.add(p);
 			} else {
 				String respuestaCorrectaDeLaPregunta = p.getRespuestaCorrecta();
@@ -254,7 +252,6 @@ public class PreguntaServiceImpl implements IPreguntaService {
 			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTipo().equals(tipo)).toList();
 		else if ((!tipo.equals("todos") && !tema.equals("todos")))
 			listaFiltrada = listaFiltrada.stream().filter(p -> p.getTipo().equals(tipo)).filter(p-> p.getTema().equals(tema)).toList();
-		for (Pregunta p : listaFiltrada) System.out.println(p.getEnunciado());
 		return listaFiltrada;
 	}
 

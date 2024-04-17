@@ -14,8 +14,8 @@
 	
 </header>
 <main>
-<h1 th:if="${!preguntasBien.isEmpty && !preguntasMal.isEmpty}">HAS ACERTADO <span th:text="${preguntasBien.size}"></span>/10 PREGUNTAS </h1>
-<h1 th:if="${preguntasBien.isEmpty && preguntasMal.isEmpty}">NO HAS RESPONDIDO A NINGUNA PREGUNTA</h1>
+<h1 th:if="${!preguntasBien.isEmpty || !preguntasMal.isEmpty}"><span th:text="${nombre}"></span>, HAS ACERTADO <span th:text="${preguntasBien.size}"></span>/10 PREGUNTAS </h1>
+<h1 th:if="${preguntasBien.isEmpty && preguntasMal.isEmpty}"><span th:text="${nombre}"></span>, NO HAS RESPONDIDO A NINGUNA PREGUNTA</h1>
 
 <h1 th:if="${!preguntasBien.isEmpty}">PREGUNTAS ACERTADAS</h1>
 <div th:each="pregunta: ${preguntasBien}" >
